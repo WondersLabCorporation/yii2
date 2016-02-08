@@ -1,54 +1,26 @@
-Yii 2 Advanced Project Template
-===============================
+Wonderslab Yii 2 Advanced Project Template
+==========================================
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
+**Wonderslab** Yii 2 Advanced Project Template is based on *Yii 2 Advanced Project Template* [Yii 2](http://www.yiiframework.com/)
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+# Changes and additions
+_____________________
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+* **AccessRule** - class override to include simple role-based access to actions
+* **.htaccess** - mod_rewrite rules to send all /backend requests to backend application,
+  slicing requests to slicing folder and / requests to frontend application
+* **ActiveRecord** - class override to include status constants active/deleted and methods for human-readable titles
+* **ActiveRecordQuery** - ActiveQuery for ActiveRecord class with active() method and overrode findAll(...) to include condition
+* **User** - model override to include Admin/User roles. 
+Console and Backend User models added to allow both roles. Frontend User model allows User role only
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
+### Backend
+_______
 
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-advanced/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-advanced/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-advanced.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-advanced)
+* **BaseController** - includes role-based Access rule and base behaviors
 
-DIRECTORY STRUCTURE
--------------------
+### Console
+_______
 
-```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
-tests                    contains various tests for the advanced application
-    codeception/         contains tests developed with Codeception PHP Testing Framework
-```
+* **Migration** - class override to include table options. MySQL-related options implemented only for now.
+

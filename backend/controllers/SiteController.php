@@ -1,44 +1,54 @@
 <?php
 namespace backend\controllers;
 
+use backend\components\BaseController;
 use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends BaseController
 {
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['login', 'error'],
-                        'allow' => true,
-                    ],
-                    [
-                        'actions' => ['logout', 'index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
+        $behaviors = parent::behaviors();
+        $behaviors['access']['rules'] = array_merge(
+            [
+                [
+                    'actions' => ['login'],
+                    'allow' => true,
+                    'roles' => ['?'],
+                ],
+                [
+                    'actions' => ['login'],
+                    'allow' => false,
+                    'roles' => ['@'],
+                ],
+                [
+                    'actions' => ['logout'],
+                    'allow' => true,
+                    'roles' => ['@'],
+                ],
+                [
+                    'actions' => ['logout'],
+                    'allow' => false,
+                    'roles' => ['?'],
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
+            $behaviors['access']['rules']
+        );
+        $behaviors['verbs'] = [
+            'class' => VerbFilter::className(),
+            'actions' => [
+                'logout' => ['post'],
             ],
         ];
+        return $behaviors;
     }
 
     /**
@@ -46,11 +56,11 @@ class SiteController extends Controller
      */
     public function actions()
     {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
+        $actions = parent::actions();
+        $actions['error'] = [
+            'class' => 'yii\web\ErrorAction',
         ];
+        return $actions;
     }
 
     public function actionIndex()
