@@ -6,6 +6,7 @@ Wonderslab Yii 2 Advanced Project Template
 # Changes and additions
 _____________________
 
+### Common
 * **AccessRule** - class override to include simple role-based access to actions
 * **.htaccess** - mod_rewrite rules to send all /backend requests to backend application,
   slicing requests to slicing folder and / requests to frontend application
@@ -15,12 +16,8 @@ _____________________
 Console and Backend User models added to allow both roles. Frontend User model allows User role only
 
 ### Backend
-_______
-
 * **BaseController** - includes role-based Access rule and base behaviors
 
 ### Console
-_______
-
 * **Migration** - class override to include table options. MySQL-related options implemented only for now.
 
