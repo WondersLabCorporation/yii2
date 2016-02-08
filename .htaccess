@@ -1,0 +1,19 @@
+# Mod_Autoindex
+<IfModule mod_autoindex.c>
+    # Disable Indexes
+    Options -Indexes
+    IndexIgnore */*
+</IfModule>
+
+# Mod_Rewrite
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    # use mod_rewrite for pretty URL support
+    RewriteEngine on
+    #Send all /admin requests to backend/web folder
+    RewriteRule ^backend(/.*)$ backend/web/$1 [L,PT]
+    #Send all /slicing requests to slicing folder
+    RewriteRule ^slicing(/.*)$ slicing/$1 [L,PT]
+    #Send all / (root) requests to frontend/web folder
+    RewriteRule ^(.*)$ frontend/web/$1
+</IfModule>
