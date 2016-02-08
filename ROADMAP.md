@@ -12,3 +12,5 @@
  * many-to-many and many-to-one relations management for CRUDs (Gii generator override)
  * HTML5 features for inputs. Like role='tel'
  * Sitemap generation (if needed)
+ * Gii updates for backend controller to include new AccessRule
+ * Default migration controller changes to generate new migrations based on overrode Migration class 
