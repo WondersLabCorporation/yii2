@@ -1,0 +1,18 @@
+#Staging config. cPanel based account is used as an example. Production environment is used as an example
+deployment:
+  user: STAGING_SERVER_CPANEL_USER
+  from: /var/www/html/PROJECT_NAME.dev.wonderslab.com/
+  to: /home/PROJECT_NAME/public_html/
+  excludes:
+      - vendor
+  stratagy: rsync
+hosts:
+  - STAGING_SERVER.TLD
+tasks:
+  pre-deploy:
+  on-deploy:
+    - general/manually:
+      - composer install;
+      - php init --env=Production --overwrite=All;
+      - php yii migrate/up --interactive=0;
+  post-deploy:

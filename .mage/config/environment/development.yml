@@ -1,0 +1,15 @@
+#Development config to run deploy to the same server where Magellan is installed
+deployment:
+  user: mage
+  to: /var/www/html/PROJECT_NAME.dev.wonderslab.com/
+  stratagy: disabled
+hosts:
+  - 127.0.0.1:6022
+tasks:
+  pre-deploy:
+  on-deploy:
+    - general/manually:
+      - composer install;
+      - php init --env=Development --overwrite=All;
+      - php yii migrate/up --interactive=0;
+  post-deploy:

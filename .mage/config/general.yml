@@ -1,0 +1,7 @@
+# global settings
+name: Wonderslab Yii2 Template Project
+email: developer@wonderslab.com
+notifications: false
+logging: true
+maxlogs: 30
+ssh_needs_tty: false

@@ -16,6 +16,7 @@ _____________________
 Console and Backend User models added to allow both roles. Frontend User model allows User role only
 * **configs** - index files re-writed in a way to include dev.php config files as the last stage. 
 At the same time those files are in gitignore so any local configs can be placed there. common/config/sample.dev.php file added
+* **Mage config** - default Magellan config added for development and staging environment [More details](http://magephp.com/#config-environment)
 
 ### Backend
 * **BaseController** - includes role-based Access rule and base behaviors
