@@ -16,11 +16,22 @@ require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
 require(__DIR__ . '/common/config/bootstrap.php');
 require(__DIR__ . '/console/config/bootstrap.php');
 
+$commonDev = [];
+$commonDevConfigPath = __DIR__ . '/common/config/dev.php';
+$consoleDev = [];
+$consoleDevConfigPath = __DIR__ . '/console/config/dev.php';
+
+if (file_exists($commonDevConfigPath)) {
+    $commonDev = require($commonDevConfigPath);
+}
+
 $config = yii\helpers\ArrayHelper::merge(
     require(__DIR__ . '/common/config/main.php'),
     require(__DIR__ . '/common/config/main-local.php'),
+    $commonDev,
     require(__DIR__ . '/console/config/main.php'),
-    require(__DIR__ . '/console/config/main-local.php')
+    require(__DIR__ . '/console/config/main-local.php'),
+    $consoleDev
 );
 
 $application = new yii\console\Application($config);
