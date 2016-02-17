@@ -18,5 +18,5 @@
  - [ ] Default migration controller changes to generate new migrations based on overrode Migration class 
  - [ ] Email templates module with token-replacements. This widget can be used as base [Text-area-tokens](https://github.com/mmedojevicbg/yii2-text-area-tokens)
  - [ ] Update gii to include relations editing. Use this article as the starting point - [Relations-editing](http://www.yiiframework.com/wiki/836/how-to-use-listbox-and-checkboxlist/)
- - [ ] Add Toaster flash messages - [Toastr](https://github.com/odai-alali/yii2-toastr)
+ - [x] Add Toaster flash messages - [Toastr](https://github.com/odai-alali/yii2-toastr)
  - [ ] Mailing for dev config

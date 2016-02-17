@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8580bd82955b1fbb80d47024e184056e",
-    "content-hash": "e1929a97e872bdbaacc8530468eccb67",
+    "hash": "c40b0e14a0b40becf2d4fc02da5c2768",
+    "content-hash": "c76a8cd601b99b9e391cb4aa2ebae7a7",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -181,6 +181,31 @@
             }
         },
         {
+            "name": "bower-asset/toastr",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnpapa/toastr-bower.git",
+                "reference": "e648a870a60103bbc3986c1fe2b2de86ea4a9569"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnpapa/toastr-bower/zipball/e648a870a60103bbc3986c1fe2b2de86ea4a9569",
+                "reference": "e648a870a60103bbc3986c1fe2b2de86ea4a9569",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.6.3"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "toastr.js",
+                    "toastr.css"
+                ]
+            }
+        },
+        {
             "name": "bower-asset/yii2-pjax",
             "version": "v2.0.5",
             "source": {
@@ -316,6 +341,49 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
+        },
+        {
+            "name": "odaialali/yii2-toastr",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/odai-alali/yii2-toastr.git",
+                "reference": "c9e1da3f90e2eb731736692037928ae0a762f795"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/odai-alali/yii2-toastr/zipball/c9e1da3f90e2eb731736692037928ae0a762f795",
+                "reference": "c9e1da3f90e2eb731736692037928ae0a762f795",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/toastr": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "odaialali\\yii2toastr\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Odai Alali",
+                    "email": "odai.alali@gmail.com"
+                }
+            ],
+            "description": "This is the Toastr extension for Yii 2. It encapsulates Toastr plugin in terms of Yii widgets, and makes ajax notification easy to implement.",
+            "keywords": [
+                "extension",
+                "notification",
+                "toastr",
+                "yii2"
+            ],
+            "time": "2015-01-28 05:23:51"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -915,7 +983,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "odaialali/yii2-toastr": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
