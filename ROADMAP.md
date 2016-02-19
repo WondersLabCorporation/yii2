@@ -20,3 +20,6 @@
  - [ ] Update gii to include relations editing. Use this article as the starting point - [Relations-editing](http://www.yiiframework.com/wiki/836/how-to-use-listbox-and-checkboxlist/)
  - [x] Add Toaster flash messages - [Toastr](https://github.com/odai-alali/yii2-toastr)
  - [ ] Mailing for dev config
+ - [ ] Create backend controller template with default actions. Implement it as a trait or the same way as rest controller for example. Update Gii for newly create template
+ - [ ] Override behaviors in a way to append child behavior() instead of parent replace.
+ - [ ] Override Yii class for IDE autocomplete. [Cookbook](https://yii2-cookbook.readthedocs.org/ide-autocompletion/)
