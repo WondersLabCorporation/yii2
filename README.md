@@ -9,7 +9,7 @@ _____________________
 ### Common
 * **AccessRule** - class override to include simple role-based access to actions
 * **.htaccess** - mod_rewrite rules to send all /backend requests to backend application,
-  slicing requests to slicing folder and / requests to frontend application
+  /slicing requests to slicing folder and / requests to frontend application
 * **ActiveRecord** - class override to include status constants active/deleted and methods for human-readable titles
 * **ActiveRecordQuery** - ActiveQuery for ActiveRecord class with active() method and overrode findAll(...) to include condition
 * **User** - model override to include Admin/User roles. 

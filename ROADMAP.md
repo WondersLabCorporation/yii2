@@ -29,3 +29,4 @@
  - [ ] Create frontendUrlManager in a separate file to include it in backend and frontend. Change Backend Logo URL to send to frontend instead of backend
  - [ ] Add SoftDelete behavior to the overrode active record since it is a common issue [SoftDeleteBehavior](https://packagist.org/packages/yii2tech/ar-softdelete)
  - [ ] Check if 3rd party admin module can be useful like https://packagist.org/packages/yii2tech/admin
+ - [ ] Configure Mailer class to include From address by default
