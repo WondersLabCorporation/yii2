@@ -3,6 +3,7 @@ namespace common\models;
 
 use Yii;
 use yii\base\NotSupportedException;
+use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\web\IdentityInterface;
 use common\overrides\db\ActiveRecord;
@@ -14,6 +15,7 @@ use common\overrides\db\ActiveRecord;
  * @property string $username
  * @property string $password_hash
  * @property string $password_reset_token
+ * @property string $verification_token
  * @property string $email
  * @property string $auth_key
  * @property integer $status
@@ -25,6 +27,8 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const ROLE_ADMIN = 30;
     const ROLE_USER = 10;
+
+    const STATUS_PENDING = 1;
 
     /**
      * @inheritdoc
@@ -39,9 +43,20 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function behaviors()
     {
-        return [
-            TimestampBehavior::className(),
-        ];
+        return array_merge(
+            parent::behaviors(),
+            [
+                'verification_token' => [
+                    'class' => AttributeBehavior::className(),
+                    'attributes' => [
+                        ActiveRecord::EVENT_BEFORE_INSERT => 'verification_token',
+                    ],
+                    'value' => function() {
+                        return Yii::$app->security->generateRandomString();
+                    },
+                ],
+            ]
+        );
     }
 
     /**
@@ -50,8 +65,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            ['status', 'default', 'value' => self::STATUS_PENDING],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED, self::STATUS_PENDING]],
         ];
     }
 
@@ -75,11 +90,16 @@ class User extends ActiveRecord implements IdentityInterface
      * Finds user by username
      *
      * @param string $username
+     * @param integer $status
      * @return static|null
      */
-    public static function findByUsername($username)
+    public static function findByUsername($username, $status = null)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        $userQuery = static::find()->andWhere(['username' => $username]);
+        if ($status) {
+            $userQuery->andWhere(['status' => $status]);
+        }
+        return $userQuery->limit(1)->one();
     }
 
     /**
@@ -184,5 +204,41 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getStatusTexts()
+    {
+        $statusTexts = parent::getStatusTexts();
+        $statusTexts[static::STATUS_PENDING] = Yii::t('app', 'Pending');
+        return $statusTexts;
+    }
+
+    /**
+     * @param $verification_token
+     * @param $status
+     * @return null|User Referral
+     */
+    public static function findByVerificationToken($verification_token,  $status = self::STATUS_PENDING)
+    {
+        $userQuery = static::find()->andWhere(['verification_token' => $verification_token]);
+        if(!empty($status)) {
+            $userQuery->andWhere(['status' => $status]);
+        }
+        return $userQuery->limit(1)->one();
+    }
+
+    /**
+     * Activate user
+     *
+     * @param bool $validate
+     * @return bool
+     */
+    public function activate($validate = true)
+    {
+        $this->status = static::STATUS_ACTIVE;
+        return $this->save($validate);
     }
 }

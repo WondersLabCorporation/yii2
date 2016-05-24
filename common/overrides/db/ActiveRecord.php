@@ -50,8 +50,8 @@ class ActiveRecord extends \yii\db\ActiveRecord
     public static function getStatusTexts()
     {
         return [
-            self::STATUS_ACTIVE => Yii::t('app', 'Active'),
-            self::STATUS_DELETED => Yii::t('app', 'Deleted'),
+            static::STATUS_ACTIVE => Yii::t('app', 'Active'),
+            static::STATUS_DELETED => Yii::t('app', 'Deleted'),
         ];
     }
 

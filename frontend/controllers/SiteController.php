@@ -8,10 +8,12 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
+use yii\helpers\Html;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use frontend\models\User;
 
 /**
  * Site controller
@@ -151,9 +153,16 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
+                Yii::$app->session->addFlash(
+                        'success', Yii::t(
+                        'auth',
+                        'You have successfully registered. Please follow the verification link sent to your email address. {0}',
+                        [
+                            Html::a(Yii::t('auth', 'Resend?'), ['resend-verification', 'id' => $user->id]),
+                        ]
+                    )
+                );
+                return $this->goHome();
             }
         }
 
@@ -201,13 +210,109 @@ class SiteController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
+            Yii::$app->session->setFlash('success', 'New password was saved. You can login now.');
 
-            return $this->goHome();
+            return $this->redirect(['login']);
         }
 
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Resend verification email
+     *
+     * @param $id string User ID
+     * @return \yii\web\Response
+     */
+    public function actionResendVerification($id)
+    {
+        $user = User::findOne($id);
+        if (!$user || $user->status != User::STATUS_PENDING) {
+            Yii::$app->session->addFlash(
+                'error',
+                Yii::t(
+                    'auth',
+                    'No such user found. Please make sure you have provided correct credentials and your account is not verified yet.'
+                )
+            );
+            return $this->redirect(['login']);
+        }
+        Yii::$app->session->addFlash(
+            'success',
+            Yii::t(
+                'auth',
+                'Verification link was successfully sent to your email address. Please follow that link to proceed.'
+            )
+        );
+        Yii::$app->mailer
+            ->compose(
+                [
+                    'html' => 'resendVerification-html',
+                    'text' => 'resendVerification-text'
+                ],
+                ['user' => $user]
+            )
+            ->setFrom([Yii::$app->params['noreplyEmail'] => Yii::$app->name . ' robot'])
+            ->setTo($user->email)
+            ->setSubject('Email verification on ' . Yii::$app->name)
+            ->send();
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Verify email by one-time token
+     *
+     * @param $token string
+     * @return \yii\web\Response
+     */
+    public function actionVerifyEmail($token)
+    {
+        $user = User::findByVerificationToken($token, User::STATUS_PENDING);
+        
+        if (!$user) {
+            Yii::$app->session->addFlash(
+                'error',
+                Yii::t(
+                    'auth',
+                    'The verification token you have provided is invalid.'
+                )
+            );
+            return $this->goHome();
+        }
+        
+        if (!$user->activate()) {
+            Yii::error('Failed to verify user with ID #' . $user->id . ' User errors: ' . json_encode($user->getErrors()), 'auth');
+            Yii::$app->session->addFlash(
+                'error',
+                Yii::t(
+                    'auth',
+                    'An error occurred during email verification. Please contact site administrator for more details.'
+                )
+            );
+            return $this->redirect(['index']);
+        }
+        
+        if (!Yii::$app->user->login($user)) {
+            Yii::error('Failed to login user with ID #' . $user->id,'auth');
+            Yii::$app->session->addFlash(
+                'error',
+                Yii::t(
+                    'auth',
+                    'An error occurred during automatic login. Please try to login manually.'
+                )
+            );
+            return $this->redirect(['auth']);
+        }
+        
+        Yii::$app->session->addFlash(
+            'success',
+            Yii::t(
+                'auth',
+                'You have successfully verified your email address.'
+            )
+        );
+        return $this->goHome();
     }
 }

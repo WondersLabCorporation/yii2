@@ -3,6 +3,7 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
+use yii\helpers\Html;
 
 /**
  * Login form
@@ -12,6 +13,8 @@ class LoginForm extends Model
     public $username;
     public $password;
     public $rememberMe = true;
+
+    public $resendVerificationUrl;
 
     private $_user;
 
@@ -56,6 +59,20 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+            $user = $this->getUser();
+            if ($user->status == User::STATUS_PENDING) {
+                Yii::$app->session->addFlash(
+                    'warning',
+                    Yii::t(
+                        'authorization',
+                        'You have not verified your email address yet. Please follow the verification link sent to your email address. {0}',
+                        [
+                            Html::a(Yii::t('auth', 'Resend?'), ($this->resendVerificationUrl) ? $this->resendVerificationUrl : ['site/resend-verification', 'id' => $user->id]),
+                        ]
+                    )
+                );
+                return false;
+            }
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
             return false;

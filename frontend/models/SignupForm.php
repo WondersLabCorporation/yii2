@@ -50,6 +50,27 @@ class SignupForm extends Model
             $user->setPassword($this->password);
             $user->generateAuthKey();
             if ($user->save()) {
+                Yii::$app->mailer
+                    ->compose(
+                        [
+                            'html' => 'successfulRegistration-html',
+                            'text' => 'successfulRegistration-text'
+                        ],
+                        [
+                            'user' => $user,
+                            'verificationLink' => \yii\helpers\Url::to(
+                                [
+                                    'site/verify-email',
+                                    'token' => $user->verification_token
+                                ],
+                                true
+                            ),
+                        ]
+                    )
+                    ->setFrom([Yii::$app->params['noreplyEmail'] => Yii::$app->name . ' robot'])
+                    ->setTo($user->email)
+                    ->setSubject('Successful registration on ' . Yii::$app->name)
+                    ->send();
                 return $user;
             }
         }
