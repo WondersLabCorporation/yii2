@@ -11,7 +11,7 @@
  - [ ] Functional testing for AccessRules
  - [ ] Git tags and composer package for current repo
  - [ ] Tags for releases
- - [ ] Verify email feature (as a separate module for example)
+ - [x] Verify email feature (as a separate module for example)
  - [ ] many-to-many and many-to-one relations management for CRUDs (Gii generator override)
  - [ ] HTML5 features for inputs. Like role='tel'
  - [ ] Sitemap generation (if needed)
