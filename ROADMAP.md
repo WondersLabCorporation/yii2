@@ -30,3 +30,4 @@
  - [ ] Add SoftDelete behavior to the overrode active record since it is a common issue [SoftDeleteBehavior](https://packagist.org/packages/yii2tech/ar-softdelete)
  - [ ] Check if 3rd party admin module can be useful like https://packagist.org/packages/yii2tech/admin
  - [ ] Configure Mailer class to include From address by default
+ - [x] AdminLTE theme added for backend https://github.com/dmstr/yii2-adminlte-asset
