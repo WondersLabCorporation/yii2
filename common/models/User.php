@@ -85,17 +85,17 @@ class User extends ActiveRecord implements IdentityInterface
     {
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
-
+    
     /**
      * Finds user by username
      *
-     * @param string $username
+     * @param string $login
      * @param integer $status
      * @return static|null
      */
-    public static function findByUsername($username, $status = null)
+    public static function findByLogin($login, $status = null)
     {
-        $userQuery = static::find()->andWhere(['username' => $username]);
+        $userQuery = static::find()->andWhere(['or', ['username' => $login], ['email' => $login]]);
         if ($status) {
             $userQuery->andWhere(['status' => $status]);
         }
