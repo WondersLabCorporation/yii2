@@ -8,7 +8,7 @@ use yii\helpers\Html;
 <div class="email-verification">
     <?= Yii::t(
         'mail',
-        "<p>Hello {username},</p>\n\r<p>You have successfully registered on {appname}</p>\n\r<p>Please follow the link below to verify your email address.</p>",
+        "<p>Hello {username},</p>\n\r<p>You have successfully registered on {appname} website.</p>\n\r<p>Please follow the link below to verify your email address.</p>",
         [
             'username' => $user->username,
             'appname' => Yii::$app->name,

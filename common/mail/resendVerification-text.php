@@ -11,7 +11,7 @@ if(!empty(Yii::$app->components['frontendUrlManager'])) {
 ?>
 <?= Yii::t(
     'mail',
-    'Hello {username}. Please follow the link below to verify your email address.',
+    'Hello {username}. This email was sent to you in order to verify your email address. Please follow the link below to proceed. In case you did not request this email, please ignore it.',
     [
         'username' => $user->username,
     ]
