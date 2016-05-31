@@ -23,7 +23,8 @@ class SignupForm extends Model
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'string', 'min' => 2, 'max' => 50],
+            ['username', 'match', 'pattern' => '/^[^@]*$/i', 'message' => 'Username should not contain @ symbol.'],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
