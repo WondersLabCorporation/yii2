@@ -10,6 +10,20 @@ class ActiveRecord extends \yii\db\ActiveRecord
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
+    public $namespace = '';
+
+    /**
+     * @param null|string $modelClass
+     * @return string
+     */
+    public function getCurrentNamespace($modelClass = null)
+    {
+        if (!$modelClass || !$this->hasProperty(lcfirst($modelClass) . 'Namespace')) {
+            // return root namespace
+            return $this->namespace;
+        }
+        return lcfirst($modelClass) . 'Namespace';
+    }
 
     /**
      * @inheritdoc
