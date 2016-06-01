@@ -2,11 +2,12 @@
 namespace frontend\models;
 
 use Yii;
+use yii\helpers\Html;
 
 /**
- * Signup form
+ * Login form
  */
-class SignupForm extends \common\models\SignupForm
+class LoginForm extends \common\models\LoginForm
 {
     public $userClass = 'frontend\models\User';
 }

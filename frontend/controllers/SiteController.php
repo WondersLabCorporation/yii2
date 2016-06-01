@@ -2,7 +2,7 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\models\LoginForm;
+use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -154,7 +154,8 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 Yii::$app->session->addFlash(
-                        'success', Yii::t(
+                    'success',
+                    Yii::t(
                         'auth',
                         'You have successfully registered. Please follow the verification link sent to your email address. {0}',
                         [
@@ -185,7 +186,7 @@ class SiteController extends Controller
 
                 return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
+                Yii::$app->session->setFlash('error', 'Sorry, we are unable to send reset password email. Please contact site administrator for more details.');
             }
         }
 
@@ -199,14 +200,24 @@ class SiteController extends Controller
      *
      * @param string $token
      * @return mixed
-     * @throws BadRequestHttpException
      */
     public function actionResetPassword($token)
     {
-        try {
-            $model = new ResetPasswordForm($token);
-        } catch (InvalidParamException $e) {
-            throw new BadRequestHttpException($e->getMessage());
+        $model = new ResetPasswordForm(['token' => $token]);
+
+
+        if (!$model->validate(['token'])) {
+            Yii::$app->session->addFlash(
+                'error',
+                Yii::t(
+                    'authorization',
+                    'Wrong password reset token provided. {0}',
+                    [
+                        Html::a(Yii::t('authorization', 'Resend?'), ['site/request-password-reset']),
+                    ]
+                )
+            );
+            return $this->goHome();
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
@@ -239,25 +250,24 @@ class SiteController extends Controller
             );
             return $this->redirect(['login']);
         }
-        Yii::$app->session->addFlash(
-            'success',
-            Yii::t(
-                'auth',
-                'Verification link was successfully sent to your email address. Please follow that link to proceed.'
-            )
-        );
-        Yii::$app->mailer
-            ->compose(
-                [
-                    'html' => 'resendVerification-html',
-                    'text' => 'resendVerification-text'
-                ],
-                ['user' => $user]
-            )
-            ->setFrom([Yii::$app->params['noreplyEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($user->email)
-            ->setSubject('Email verification on ' . Yii::$app->name)
-            ->send();
+
+        if ($user->sendVerificationEmail()) {
+            Yii::$app->session->addFlash(
+                'success',
+                Yii::t(
+                    'auth',
+                    'Verification link was successfully sent to your email address. Please follow that link to proceed.'
+                )
+            );
+        } else {
+            Yii::$app->session->addFlash(
+                'error',
+                Yii::t(
+                    'auth',
+                    'Failed to send verification link. Please contact site administrator for more details.'
+                )
+            );
+        }
         return $this->redirect(['index']);
     }
 

@@ -18,7 +18,9 @@ class User extends \common\models\User
             parent::rules(),
             [
                 // User (non-admin) accounts allowed on frontend only
-                ['role', 'in', 'range' => [self::ROLE_USER]],
+                ['role', 'in', 'range' => [self::ROLE_USER], 'when' => function ($model) {
+                    return $this->isAttributeChanged('role');
+                }],
             ]
         );
     }

@@ -14,9 +14,13 @@ class LoginForm extends Model
     public $password;
     public $rememberMe = true;
 
+    public $useFlashMessages = true;
+
     public $resendVerificationUrl;
 
-    private $_user;
+    protected $_user;
+
+    public $userClass = 'common\models\User';
 
 
     /**
@@ -68,17 +72,24 @@ class LoginForm extends Model
     {
         if ($this->validate()) {
             $user = $this->getUser();
-            if ($user->status == User::STATUS_PENDING) {
-                Yii::$app->session->addFlash(
-                    'warning',
-                    Yii::t(
-                        'authorization',
-                        'You have not verified your email address yet. Please follow the verification link sent to your email address. {0}',
-                        [
-                            Html::a(Yii::t('auth', 'Resend?'), ($this->resendVerificationUrl) ? $this->resendVerificationUrl : ['site/resend-verification', 'id' => $user->id]),
-                        ]
-                    )
-                );
+            if ($user->status == constant($this->userClass . '::STATUS_PENDING')) {
+                if ($this->useFlashMessages) {
+                    Yii::$app->session->addFlash(
+                        'warning',
+                        Yii::t(
+                            'authorization',
+                            'You have not verified your email address yet. Please follow the verification link sent to your email address. {0}',
+                            [
+                                Html::a(Yii::t('authorization', 'Resend?'), ($this->resendVerificationUrl) ? $this->resendVerificationUrl : ['site/resend-verification', 'id' => $user->id]),
+                            ]
+                        )
+                    );
+                } else {
+                    $this->addError(
+                        'login',
+                        Yii::t('authorization', 'You have not verified your email address yet.')
+                    );
+                }
                 return false;
             }
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
@@ -95,7 +106,7 @@ class LoginForm extends Model
     protected function getUser()
     {
         if ($this->_user === null) {
-            $this->_user = User::findByLogin($this->login);
+            $this->_user = call_user_func([$this->userClass, 'findByLogin'], $this->login);
         }
 
         return $this->_user;

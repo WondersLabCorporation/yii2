@@ -30,6 +30,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     const STATUS_PENDING = 1;
 
+    public $namespace = 'common\models';
+
     /**
      * @inheritdoc
      */
@@ -65,6 +67,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            // TODO: Add appropriate rules
             ['status', 'default', 'value' => self::STATUS_PENDING],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED, self::STATUS_PENDING]],
         ];
@@ -108,16 +111,15 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $token password reset token
      * @return static|null
      */
-    public static function findByPasswordResetToken($token)
+    public static function findByPasswordResetToken($token, $status = self::STATUS_ACTIVE)
     {
         if (!static::isPasswordResetTokenValid($token)) {
             return null;
         }
 
-        return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
-        ]);
+        $userQuery = static::find()->andWhere(['password_reset_token' => $token]);
+        $userQuery->andFilterWhere(['status' => $status]);
+        return $userQuery->limit(1)->one();
     }
 
     /**
@@ -224,9 +226,7 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findByVerificationToken($verification_token,  $status = self::STATUS_PENDING)
     {
         $userQuery = static::find()->andWhere(['verification_token' => $verification_token]);
-        if(!empty($status)) {
-            $userQuery->andWhere(['status' => $status]);
-        }
+        $userQuery->andFilterWhere(['status' => $status]);
         return $userQuery->limit(1)->one();
     }
 
@@ -240,5 +240,26 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->status = static::STATUS_ACTIVE;
         return $this->save($validate);
+    }
+
+    /**
+     * @param bool $resend
+     * @return bool If mail send was successful
+     */
+    public function sendVerificationEmail($resend = false)
+    {
+        // TODO: add processing in case of resend (e.g. change subject)
+        return Yii::$app->mailer
+            ->compose(
+                [
+                    'html' => 'resendVerification-html',
+                    'text' => 'resendVerification-text'
+                ],
+                ['user' => $this]
+            )
+            ->setFrom([Yii::$app->params['noreplyEmail'] => Yii::$app->name . ' robot'])
+            ->setTo($this->email)
+            ->setSubject('Email verification on ' . Yii::$app->name)
+            ->send();
     }
 }
