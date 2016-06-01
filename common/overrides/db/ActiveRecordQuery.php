@@ -11,8 +11,7 @@ class ActiveRecordQuery extends \yii\db\ActiveQuery
 {
     public function active()
     {
-        // TODO: Find out how to use current Model class instead of global ActiveRecord
-        $this->andWhere(['status' => ActiveRecord::STATUS_ACTIVE]);
+        $this->andWhere(['status' => constant($this->modelClass . '::STATUS_ACTIVE')]);
         return $this;
     }
 
