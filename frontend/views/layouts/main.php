@@ -62,7 +62,9 @@ AppAsset::register($this);
         ]) ?>
         <?= \odaialali\yii2toastr\ToastrFlash::widget([
             'options' => [
-                'positionClass' => 'toast-top-right'
+                'positionClass' => 'toast-top-right',
+                'timeOut' => 10000,
+                'extendedTimeOut' => 0,
             ]
         ]);?>
         <?= $content ?>
