@@ -238,6 +238,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function activate($validate = true)
     {
+        $this->verification_token = null;
         $this->status = static::STATUS_ACTIVE;
         return $this->save($validate);
     }
