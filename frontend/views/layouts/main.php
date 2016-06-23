@@ -64,7 +64,7 @@ AppAsset::register($this);
             'options' => [
                 'positionClass' => 'toast-top-right',
                 'timeOut' => 10000,
-                'extendedTimeOut' => 0,
+                'extendedTimeOut' => 10000,
             ]
         ]);?>
         <?= $content ?>
