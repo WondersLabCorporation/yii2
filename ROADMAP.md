@@ -12,13 +12,16 @@
  - [ ] Git tags and composer package for current repo
  - [ ] Tags for releases
  - [x] Verify email feature (as a separate module for example)
- - [ ] many-to-many and many-to-one relations management for CRUDs (Gii generator override)
+ - [ ] User profile form with change password via verification feature (option to disable this feature) 
+ - [ ] User profile form with change email via verification to old and new address feature (option to disable fully or partial)
+ - [ ] Unit testing of the user model features
  - [ ] HTML5 features for inputs. Like role='tel'
  - [ ] Sitemap generation (if needed)
- - [ ] Gii updates for backend controller to include new AccessRule
+ - [ ] Gii updates for backend controller to include new AccessRule and/or use overrode BackendController
  - [ ] Default migration controller changes to generate new migrations based on overrode Migration class 
  - [ ] Email templates module with token-replacements. This widget can be used as base [Text-area-tokens](https://github.com/mmedojevicbg/yii2-text-area-tokens)
- - [ ] Update gii to include relations editing. Use this article as the starting point - [Relations-editing](http://www.yiiframework.com/wiki/836/how-to-use-listbox-and-checkboxlist/)
+ - [ ] Update gii to include many-to-many and many-to-one relations editing. Use this article as the starting point - [Relations-editing](http://www.yiiframework.com/wiki/836/how-to-use-listbox-and-checkboxlist/)
+ - [ ] Create separate layouts for backend grids (wide) and backend forms. Adjust CSS. Adjust Gii.
  - [x] Add Toaster flash messages - [Toastr](https://github.com/odai-alali/yii2-toastr)
  - [ ] Mailing for dev config
  - [ ] Create backend controller template with default actions. Implement it as a trait or the same way as rest controller for example. Update Gii for newly create template
