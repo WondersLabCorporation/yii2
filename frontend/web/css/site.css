@@ -89,3 +89,21 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+/* Adjust Google Re-captcha width on small devices */
+/* TODO: Hack-ish solution. Need to be replaced once a better one is found */
+@media only screen and (max-width : 320px) {
+    .g-recaptcha {
+        -webkit-transform: scale(0.96);
+        -moz-transform: scale(0.96);
+        -ms-transform: scale(0.96);
+        -o-transform: scale(0.96);
+        transform: scale(0.96);
+        -webkit-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+        -o-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
+}
+
