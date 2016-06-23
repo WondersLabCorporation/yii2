@@ -72,6 +72,10 @@ a.desc:after {
     content: "\e156";
 }
 
+.table {
+    background-color: #ffffff;
+}
+
 .grid-view th {
     white-space: nowrap;
 }
