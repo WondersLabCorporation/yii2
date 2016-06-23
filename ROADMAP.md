@@ -17,7 +17,7 @@
  - [ ] Unit testing of the user model features
  - [ ] HTML5 features for inputs. Like role='tel'
  - [ ] Sitemap generation (if needed)
- - [ ] Gii updates for backend controller to include new AccessRule and/or use overrode BackendController
+ - [x] Gii updates for backend controller to include new AccessRule and/or use overrode BackendController
  - [ ] Default migration controller changes to generate new migrations based on overrode Migration class 
  - [ ] Email templates module with token-replacements. This widget can be used as base [Text-area-tokens](https://github.com/mmedojevicbg/yii2-text-area-tokens)
  - [ ] Update gii to include many-to-many and many-to-one relations editing. Use this article as the starting point - [Relations-editing](http://www.yiiframework.com/wiki/836/how-to-use-listbox-and-checkboxlist/)
