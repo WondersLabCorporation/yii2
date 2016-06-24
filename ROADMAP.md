@@ -29,7 +29,6 @@
  - [x] Add google re-captcha and use it as default one if appropriate
  - [ ] Separate admin and user sessions to reduce the number of 400 errors during manual testing and for users with both roles (like web site owner for example)
  - [ ] Create frontendUrlManager in a separate file to include it in backend and frontend. Change Backend Logo URL to send to frontend instead of backend
- - [ ] Add SoftDelete behavior to the overrode active record since it is a common issue [SoftDeleteBehavior](https://packagist.org/packages/yii2tech/ar-softdelete)
  - [ ] Check if 3rd party admin module can be useful like https://packagist.org/packages/yii2tech/admin
  - [ ] Configure Mailer class to include From address by default
  - [x] AdminLTE theme added for backend https://github.com/dmstr/yii2-adminlte-asset
