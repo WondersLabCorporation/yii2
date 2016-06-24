@@ -20,6 +20,16 @@ if (!YII_ENV_TEST) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         'generators' => [
+            'model' => [
+                'class' => 'common\overrides\gii\model\Generator',
+            ],
+            'backend-model' => [
+                'class' => 'common\overrides\gii\model\Generator',
+                'messageCategory' => 'frontend',
+                'ns' => 'backend\models',
+                'name' => 'Backend Model Generator',
+                'description' => 'This generator generates an ActiveRecord class for the specified database table in frontend folder.',
+            ],
             'crud' => [
                 'class' => 'yii\gii\generators\crud\Generator',
                 'baseControllerClass' => 'backend\components\BaseController',
