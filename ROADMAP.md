@@ -21,7 +21,7 @@
  - [ ] Default migration controller changes to generate new migrations based on overrode Migration class 
  - [ ] Email templates module with token-replacements. This widget can be used as base [Text-area-tokens](https://github.com/mmedojevicbg/yii2-text-area-tokens)
  - [ ] Update gii to include many-to-many and many-to-one relations editing. Use this article as the starting point - [Relations-editing](http://www.yiiframework.com/wiki/836/how-to-use-listbox-and-checkboxlist/)
- - [ ] Create separate layouts for backend grids (wide) and backend forms. Adjust CSS. Adjust Gii.
+ - [x] Adjust Gii to generate wide grid and thick forms and views (col-md-6).
  - [x] Add Toaster flash messages - [Toastr](https://github.com/odai-alali/yii2-toastr)
  - [ ] Mailing for dev config
  - [ ] Create backend controller template with default actions. Implement it as a trait or the same way as rest controller for example. Update Gii for newly create template

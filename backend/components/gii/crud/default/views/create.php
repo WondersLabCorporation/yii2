@@ -20,9 +20,13 @@ $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Infl
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-create">
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            
+            <?= "<?= " ?>$this->render('_form', [
+                'model' => $model,
+            ]) ?>
 
-    <?= "<?= " ?>$this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+        </div>
+    </div>
 </div>
