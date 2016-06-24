@@ -24,7 +24,7 @@
  - [x] Add Toaster flash messages - [Toastr](https://github.com/odai-alali/yii2-toastr)
  - [ ] Mailing for dev config
  - [ ] Create backend controller template with default actions. Implement it as a trait or the same way as rest controller for example. Update Gii for newly create template
- - [ ] Override behaviors in a way to append child behavior() instead of parent replace.
+ - [x] Override behaviors in a way to append child behavior() instead of parent replace. - Partial resolved by Gii model generator override  
  - [ ] Override Yii class for IDE autocomplete. [Cookbook](https://yii2-cookbook.readthedocs.org/ide-autocompletion/)
  - [x] Add google re-captcha and use it as default one if appropriate
  - [ ] Separate admin and user sessions to reduce the number of 400 errors during manual testing and for users with both roles (like web site owner for example)
