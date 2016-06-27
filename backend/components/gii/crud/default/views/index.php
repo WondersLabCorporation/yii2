@@ -60,7 +60,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
 }
 ?>
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'common\overrides\grid\ActionColumn'],
         ],
     ]); ?>
 <?php else: ?>
