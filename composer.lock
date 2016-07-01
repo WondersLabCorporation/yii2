@@ -4,9 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bcff6cf849bef62a134e4db75835eb09",
-    "content-hash": "ff7cbdbc16c9c075664b3b5df51d86ae",
+    "hash": "dfef39fd6b2c174f2b5f4dd3b85aef9f",
+    "content-hash": "b4f98a9d395a921086703474993999fb",
     "packages": [
+        {
+            "name": "WondersLabCorporation/yii2-unlimited-number-input-widget",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WondersLabCorporation/yii2-unlimited-number-input-widget.git",
+                "reference": "46411e7f1910ce33224e4645ff7bc796181dea3d"
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0",
+                "yiisoft/yii2-bootstrap": "~2.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "WondersLabCorporation\\UnlimitedNumber\\": "src"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitriy Raschepkin",
+                    "email": "dmitriy.raschepkin@gmail.com"
+                }
+            ],
+            "description": "The yii2-unlimited-number-input-widget is a custom widget which allows to set number or set value as Unlimited.",
+            "homepage": "https://github.com/WondersLabCorporation/yii2-unlimited-number-input-widget",
+            "keywords": [
+                "extension",
+                "yii2",
+                "yii2 number widget",
+                "yii2 unlimited number input widget",
+                "yii2 unlimited number widget"
+            ],
+            "support": {
+                "issues": "https://github.com/WondersLabCorporation/yii2-unlimited-number-input-widget/issues",
+                "source": "https://github.com/WondersLabCorporation/yii2-unlimited-number-input-widget"
+            },
+            "time": "2016-07-01 09:36:26"
+        },
         {
             "name": "almasaeed2010/adminlte",
             "version": "v2.3.3",
@@ -1208,7 +1253,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "odaialali/yii2-toastr": 20
+        "odaialali/yii2-toastr": 20,
+        "wonderslabcorporation/yii2-unlimited-number-input-widget": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "*",
         "odaialali/yii2-toastr": "dev-master",
         "dmstr/yii2-adminlte-asset": "^2.3",
-        "himiklab/yii2-recaptcha-widget": "^1.0"
+        "himiklab/yii2-recaptcha-widget": "^1.0",
+        "WondersLabCorporation/yii2-unlimited-number-input-widget": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
@@ -36,5 +37,11 @@
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
         }
-    }
+    },
+    "repositories": [
+        {
+            "url": "https://github.com/WondersLabCorporation/yii2-unlimited-number-input-widget.git",
+            "type": "git"
+        }
+    ]
 }
