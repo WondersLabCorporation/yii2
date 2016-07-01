@@ -20,6 +20,8 @@ use frontend\models\User;
  */
 class SiteController extends Controller
 {
+    // TODO: Create controller for Static content
+    // TODO: Add rules for static content types based on slug
     /**
      * @inheritdoc
      */

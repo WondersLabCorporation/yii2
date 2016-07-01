@@ -1,3 +1,23 @@
+<?php
+
+use backend\models\StaticType;
+
+$staticContentTypes = StaticType::activeItemsList();
+$staticContentTypesMenuItems = [];
+foreach (StaticType::activeItemsList() as $id => $name) {
+    // TODO: Find out a better solution instead of adding type_id everywhere
+    $staticContentTypesMenuItems[] = ['label' => $name, 'url' => ['/static-content', 'type_id' => $id]];
+}
+
+$items = [
+    'home' => ['label' => Yii::t('backend', 'Home'), 'url' => ['site/index']],
+    'static content' => ['label' => Yii::t('backend', 'Static Content'), 'items' => $staticContentTypesMenuItems],
+    'settings' => ['label' => Yii::t('backend', 'Settings'), 'items' => [
+        'static content types' => ['label' => Yii::t('backend', 'Static Content Types'), 'url' => ['/static-type']],
+    ]],
+];
+
+?>
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -15,9 +35,7 @@
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],
-                'items' => [
-                    ['label' => Yii::t('backend', 'Home'), 'url' => ['site/index']],
-                ],
+                'items' => $items,
             ]
         ) ?>
 
