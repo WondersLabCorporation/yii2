@@ -20,7 +20,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
     {
         if (!$modelClass || !$this->hasProperty(lcfirst($modelClass) . 'Namespace')) {
             // return root namespace
-            return $this->namespace;
+            return $this->namespace . '\\' . $modelClass;
         }
         return lcfirst($modelClass) . 'Namespace';
     }
