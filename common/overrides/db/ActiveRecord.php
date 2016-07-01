@@ -37,6 +37,20 @@ class ActiveRecord extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
+     */
+    public function rules()
+    {
+        return array_merge(
+            parent::rules(),
+            [
+                ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+                ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ]
+        );
+    }
+
+    /**
+     * @inheritdoc
      * @return ActiveRecordQuery the active query used by this AR class.
      */
     public static function find()
