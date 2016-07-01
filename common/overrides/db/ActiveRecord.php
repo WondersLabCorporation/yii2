@@ -77,4 +77,32 @@ class ActiveRecord extends \yii\db\ActiveRecord
     {
         return (!empty($this->getStatusTexts()[$this->status])) ? $this->getStatusTexts()[$this->status] : '';
     }
+
+    /**
+     * Get current attribute human-readable value
+     * @param $attribute string Attribute name
+     * @return string
+     */
+    public function getListAttributeText($attribute)
+    {
+        // TODO: Need to find a more common solution instead of hardcoded method name
+        $getListAttributeTexts = $this->generateTextsMethod($attribute);
+        if (!$this->hasMethod($getListAttributeTexts) || empty($this->$getListAttributeTexts()[$this->$attribute])) {
+            return null;
+        }
+        return $this->$getListAttributeTexts()[$this->$attribute];
+    }
+
+    protected function generateTextsMethod($attribute)
+    {
+
+        // TODO: Need to find a more common solution instead of hardcoded method name
+        $result = 'get';
+        $attributeParts = explode('_', $attribute);
+        foreach ($attributeParts as $attributePart) {
+            $result .= ucfirst($attributePart);
+        }
+        $result .= 'Texts';
+        return $result;
+    }
 }
