@@ -18,6 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?php switch ($model->type->editor_type) :
         case StaticType::EDITOR_TYPE_WYSIWYG : ?>
+            <?php // TODO: Adjust TinyMCE according to generic needs ?>
             <?= $form->field($model, 'content')->widget(\dosamigos\tinymce\TinyMce::className(), []) ?>
         <?php break; ?>
         <?php case StaticType::EDITOR_TYPE_TEXTAREA : ?>

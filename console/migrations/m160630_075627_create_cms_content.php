@@ -21,6 +21,7 @@ class m160630_075627_create_cms_content extends \console\overrides\db\Migration
             'content' => $this->string()->notNull(),
             'slug' => $this->string(),
             'type_id' => $this->integer(),
+            // TODO: Add image
 
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
