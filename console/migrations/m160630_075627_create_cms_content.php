@@ -1,7 +1,6 @@
 <?php
 
 use common\models\StaticType;
-use yii\db\Migration;
 
 /**
  * Handles the creation for table `cms_content`.
@@ -40,7 +39,8 @@ class m160630_075627_create_cms_content extends \console\overrides\db\Migration
             'updated_at' => $this->integer()->notNull(),
         ], $this->tableOptions);
 
-        $this->addForeignKey('fk_cms_content__cms_type', $this->tableName, 'type_id', $this->typeTableName, 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('fk_static_content__static_type', $this->tableName, 'type_id', $this->typeTableName, 'id', 'CASCADE', 'CASCADE');
+        $this->createIndex('ui_static_content__slug_type', $this->tableName, ['slug', 'type_id'], true);
     }
 
     /**

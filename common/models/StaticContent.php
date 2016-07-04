@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "{{%static_content}}".
@@ -22,9 +23,27 @@ class StaticContent extends \common\overrides\db\ActiveRecord
 {
     public $namespace = 'common\models';
     
-    // TODO: Count behavior
-    // TODO: Slug behavior
-    
+    public function behaviors()
+    {
+        return array_merge(
+            parent::behaviors(),
+            [
+                'slug' => [
+                    'class' => SluggableBehavior::className(),
+                    'attribute' => 'title',
+                    'ensureUnique' => true,
+                    'immutable' => true,
+                    'uniqueValidator' => [
+                        // Slug should be unique among content items of the same type
+                        'targetAttribute' => ['slug', 'type_id'],
+                    ],
+                    // TODO: Add condition to generate Slug for content with Page type only
+                ],
+                // TODO: Count behavior
+            ]
+        );
+    }
+
     /**
      * @inheritdoc
      */

@@ -2,6 +2,7 @@
 
 use backend\models\StaticContent;
 use backend\models\StaticType;
+use WondersLabCorporation\UnlimitedNumber\UnlimitedNumberInputWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -29,8 +30,16 @@ use yii\widgets\ActiveForm;
         <?php break;
             endswitch; ?>
 
-
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'slug')
+        ->widget(
+            // Adjusting Unlimited number widget to truncate field value when checkbox is checked
+            UnlimitedNumberInputWidget::className(),
+            [
+                'unlimitedValue' => null,
+                'checkboxOptions' => ['label' => Yii::t('backend', 'Generate automatically')],
+                'options' => ['type' => 'text'],
+            ]
+    ) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
