@@ -70,7 +70,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     public function attributeLabels()
     {
         return array_merge(
-            parent::rules(),
+            parent::attributeLabels(),
             [
 <?php foreach ($labels as $name => $label): ?>
                 <?= "'$name' => " . $generator->generateString($label) . ",\n" ?>
