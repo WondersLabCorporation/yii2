@@ -51,6 +51,24 @@ class ActiveRecord extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return array_merge(
+            parent::attributeLabels(),
+            [
+                'id' => Yii::t('common', 'ID'),
+                'status' => Yii::t('common', 'Status'),
+                'created_at' => Yii::t('common', 'Created At'),
+                'updated_at' => Yii::t('common', 'Updated At'),
+
+                'statusText' => Yii::t('common', 'Status'),
+            ]
+        );
+    }
+
+    /**
+     * @inheritdoc
      * @return ActiveRecordQuery the active query used by this AR class.
      */
     public static function find()
