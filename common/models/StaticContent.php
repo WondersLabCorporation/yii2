@@ -106,4 +106,14 @@ class StaticContent extends \common\overrides\db\ActiveRecord
         // TODO: StaticType::tableName() will not be changed. Anyway need to find out how to set appropriate namespace for StaticType class when called from static method
         return self::find()->joinWith('type')->andWhere([StaticType::tableName() . '.id' => $type_id])->all();
     }
+
+    /**
+     * @param $type_id integer ID of the Type entity
+     * @return static self instance, or null if nothing matches.
+     */
+    public static function findOneByTypeId($type_id)
+    {
+        // TODO: StaticType::tableName() will not be changed. Anyway need to find out how to set appropriate namespace for StaticType class when called from static method
+        return self::find()->joinWith('type')->andWhere([StaticType::tableName() . '.id' => $type_id])->limit(1)->one();
+    }
 }

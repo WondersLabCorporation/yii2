@@ -97,7 +97,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $mainCTABlock = StaticContent::findOneByTypeId(StaticType::ID_MAINCTA_BLOCK);
+        $secondaryCTABlock = StaticContent::findOneByTypeId(StaticType::ID_SECONDARYCTA_BLOCK);
+        $homeBlocks = StaticContent::findAllByTypeId(StaticType::ID_HOME_BLOCK);
+        return $this->render(
+            'index',
+            [
+                'mainCTABlock' => $mainCTABlock,
+                'secondaryCTABlock' => $secondaryCTABlock,
+                'homeBlocks' => $homeBlocks,
+            ]
+        );
     }
 
     /**
@@ -149,21 +159,14 @@ class SiteController extends Controller
             }
 
             return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
         }
-    }
 
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
+        $contactUsBlocks = StaticContent::findAllByTypeId(StaticType::ID_CONTACTUS_BLOCK);
+        
+        return $this->render('contact', [
+            'model' => $model,
+            'contactUsBlocks' => $contactUsBlocks,
+        ]);
     }
 
     /**
