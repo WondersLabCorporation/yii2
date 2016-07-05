@@ -11,6 +11,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property integer $id
  * @property string $name
+ * @property string $slug
  * @property integer $type
  * @property integer $items_amount
  * @property integer $editor_type
