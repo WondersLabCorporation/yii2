@@ -20,7 +20,7 @@ class m160630_075627_create_cms_content extends \console\overrides\db\Migration
             'content' => $this->text()->notNull(),
             'slug' => $this->string(),
             'type_id' => $this->integer(),
-            // TODO: Add image
+            'image' => $this->string(),
 
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
@@ -33,6 +33,7 @@ class m160630_075627_create_cms_content extends \console\overrides\db\Migration
             'slug' => $this->string(),
             'type' => $this->integer()->defaultValue(StaticType::TYPE_PAGE),
             'items_amount' => $this->integer()->defaultValue(StaticType::AMOUNT_UNLIMITED),
+            'is_image_required' => $this->boolean()->defaultValue(true),
             'editor_type' => $this->integer()->defaultValue(StaticType::EDITOR_TYPE_WYSIWYG),
 
             'status' => $this->smallInteger()->notNull()->defaultValue(StaticType::STATUS_ACTIVE),

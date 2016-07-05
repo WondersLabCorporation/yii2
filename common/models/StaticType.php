@@ -15,6 +15,7 @@ use yii\helpers\ArrayHelper;
  * @property integer $type
  * @property integer $items_amount
  * @property integer $editor_type
+ * @property boolean $is_image_required
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
@@ -84,6 +85,7 @@ class StaticType extends \common\overrides\db\ActiveRecord
                 [['name'], 'required'],
                 [['type', 'items_amount', 'editor_type', 'status', 'created_at', 'updated_at'], 'integer'],
                 [['name', 'slug'], 'string', 'max' => 255],
+                ['is_image_required', 'boolean'],
                 ['editor_type', 'in', 'range' => [self::EDITOR_TYPE_TEXTAREA, self::EDITOR_TYPE_TEXTINPUT, self::EDITOR_TYPE_WYSIWYG]],
                 ['type', 'in', 'range' => [self::TYPE_PAGE, self::TYPE_PAGE_BLOCK]],
                 ['type', 'default', 'value' => self::TYPE_PAGE],

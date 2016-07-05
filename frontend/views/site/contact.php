@@ -18,6 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php if (!empty($contactUsBlocks)) : ?>
             <div class="col-md-6 col-sm-12">
                 <?php foreach($contactUsBlocks as $contactUsBlock) : ?>
+                    <h4><?= $contactUsBlock->title ?></h4>
+                    <?php if ($contactUsBlock->type->is_image_required): ?>
+                        <?= Html::img($contactUsBlock->getImageAbsoluteUrl()) ?>
+                    <?php endif; ?>
                     <?= $contactUsBlock->content ?>
                 <?php endforeach; ?>
             </div>

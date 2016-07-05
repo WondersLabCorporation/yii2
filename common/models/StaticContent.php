@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\SluggableBehavior;
+use sadovojav\cutter\behaviors\CutterBehavior;
 
 /**
  * This is the model class for table "{{%static_content}}".
@@ -11,6 +12,7 @@ use yii\behaviors\SluggableBehavior;
  * @property integer $id
  * @property string $title
  * @property string $content
+ * @property string $image
  * @property string $slug
  * @property integer $type_id
  * @property integer $status
@@ -39,6 +41,12 @@ class StaticContent extends \common\overrides\db\ActiveRecord
                     ],
                     // TODO: Add condition to generate Slug for content with Page type only
                 ],
+                'image' => [
+                    'class' => CutterBehavior::className(),
+                    'attributes' => 'image',
+                    'baseDir' => '/uploads/static',
+                    'basePath' => Yii::getAlias('@frontend/web'),
+                ],
                 // TODO: Count behavior
             ]
         );
@@ -65,6 +73,11 @@ class StaticContent extends \common\overrides\db\ActiveRecord
                 [['title', 'slug'], 'string', 'max' => 255],
                 [['content'], 'string'],
                 [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => StaticType::className(), 'targetAttribute' => ['type_id' => 'id']],
+                [
+                    'image',
+                    'file',
+                    'mimeTypes' => ['image/*'],
+                ],
            ]
         );
     }
@@ -82,6 +95,7 @@ class StaticContent extends \common\overrides\db\ActiveRecord
                 'content' => Yii::t('common', 'Content'),
                 'slug' => Yii::t('common', 'Slug'),
                 'type_id' => Yii::t('common', 'Type'),
+                'image' => Yii::t('app', 'Image'),
                 'status' => Yii::t('common', 'Status'),
                 'created_at' => Yii::t('common', 'Created At'),
                 'updated_at' => Yii::t('common', 'Updated At'),
@@ -115,5 +129,22 @@ class StaticContent extends \common\overrides\db\ActiveRecord
     {
         // TODO: StaticType::tableName() will not be changed. Anyway need to find out how to set appropriate namespace for StaticType class when called from static method
         return self::find()->joinWith('type')->andWhere([StaticType::tableName() . '.id' => $type_id])->limit(1)->one();
+    }
+
+    /**
+     * @return null|string Image url
+     */
+    public function getImageAbsoluteUrl() 
+    {
+        // TODO: Temporary solution. Need to find a more generic solution for all the images in any project
+        if (empty($this->image)) {
+            return null;
+        }
+
+        // For backend (or any other app) we create absolute Urls using frontendUrlManager if any
+        if (isset(Yii::$app->components['frontendUrlManager'])) {
+            return Yii::$app->frontendUrlManager->createAbsoluteUrl($this->image);
+        }
+        return Yii::$app->urlManager->createUrl($this->image);
     }
 }

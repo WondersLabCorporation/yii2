@@ -16,6 +16,9 @@ $this->title = Yii::$app->name;
             <h1><?= Html::encode($mainCTABlock->title) ?></h1>
 
             <div class="lead">
+                <?php if ($mainCTABlock->type->is_image_required): ?>
+                    <?= Html::img($mainCTABlock->getImageAbsoluteUrl()) ?>
+                <?php endif; ?>
                 <?= $mainCTABlock->content ?>
             </div>
         </div>
@@ -24,7 +27,9 @@ $this->title = Yii::$app->name;
     <?php if (!empty($secondaryCTABlock)) : ?>
         <div>
             <h2><?= Html::encode($secondaryCTABlock->title) ?></h2>
-
+            <?php if ($secondaryCTABlock->type->is_image_required): ?>
+                <?= Html::img($secondaryCTABlock->getImageAbsoluteUrl()) ?>
+            <?php endif; ?>
             <?= $secondaryCTABlock->content ?>
         </div>
     <?php endif ;?>
@@ -36,6 +41,9 @@ $this->title = Yii::$app->name;
                 <?php foreach ($homeBlocks as $homeBlock) : ?>
                     <div class="col-lg-4">
                         <h3><?= Html::encode($homeBlock->title) ?></h3>
+                        <?php if ($homeBlock->type->is_image_required): ?>
+                            <?= Html::img($homeBlock->getImageAbsoluteUrl()) ?>
+                        <?php endif; ?>
                         <?= $homeBlock->content ?>
                     </div>
                 <?php endforeach;?>

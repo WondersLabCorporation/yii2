@@ -1,6 +1,8 @@
 <?php
 
 use backend\models\StaticType;
+// TODO: Cutter total refactoring required. Replace with appropriate class once done.
+use sadovojav\cutter\Cutter;
 use WondersLabCorporation\UnlimitedNumber\UnlimitedNumberInputWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -12,7 +14,7 @@ use yii\widgets\ActiveForm;
 
 <div class="static-content-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
@@ -40,6 +42,10 @@ use yii\widgets\ActiveForm;
                     'options' => ['type' => 'text'],
                 ]
         ) ?>
+    <?php endif;?>
+
+    <?php if ($model->type->is_image_required) : ?>
+        <?= $form->field($model, 'image')->widget(Cutter::className(), ['cropperOptions' => ['aspectRatio' => 1]]); ?>
     <?php endif;?>
 
     <div class="form-group">

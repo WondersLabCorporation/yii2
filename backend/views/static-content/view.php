@@ -25,6 +25,14 @@ if ($model->type->type != \backend\models\StaticType::TYPE_PAGE_BLOCK) {
     $attributes[] = 'slug';
 }
 
+if ($model->type->is_image_required) {
+    $attributes[] = [
+        'attribute' => 'image',
+        'format' => 'html',
+        'value' => Html::img($model->getImageAbsoluteUrl()),
+    ];
+}
+
 $attributes = array_merge(
     $attributes,
     [
