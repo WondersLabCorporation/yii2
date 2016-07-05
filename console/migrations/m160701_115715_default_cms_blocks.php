@@ -67,7 +67,7 @@ class m160701_115715_default_cms_blocks extends Migration
                     StaticType::ID_HOME_BLOCK,
                     'Home Page Block',
                     StaticType::TYPE_PAGE_BLOCK,
-                    1,
+                    StaticType::AMOUNT_UNLIMITED,
                     StaticType::EDITOR_TYPE_WYSIWYG,
                     StaticType::STATUS_ACTIVE,
                     $currentTime,
