@@ -12,7 +12,6 @@ use backend\models\StaticContent;
  */
 class StaticContentSearch extends StaticContent
 {
-    public $typeName;
     /**
      * @inheritdoc
      */
@@ -20,7 +19,7 @@ class StaticContentSearch extends StaticContent
     {
         return [
             [['id', 'type_id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'content', 'slug', 'typeName'], 'safe'],
+            [['title', 'content', 'slug'], 'safe'],
         ];
     }
 
@@ -49,8 +48,6 @@ class StaticContentSearch extends StaticContent
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
-        // TODO: Add sort by typeName
 
         $this->load($params);
 

@@ -1,14 +1,14 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\StringHelper;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\StaticContent */
 
-// TODO: Fix breadcrumbs based on type_id and items_amount. Set appropriate label
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', '{type} Static Content Items', ['type' => $model->type->name]), 'url' => ['index', 'type_id' => $model->type_id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', '{type} items', ['type' => $model->type->name]), 'url' => ['index', 'type_id' => $model->type_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="static-content-view">
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a(Yii::t('backend', 'Delete'), ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
-                        'confirm' => Yii::t('backend', 'Are you sure you want to delete this item?'),
+                        'confirm' => Yii::t('backend', 'Are you sure you want to delete this content item?'),
                         'method' => 'post',
                     ],
                 ]) ?>
@@ -31,7 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attributes' => [
                     'id',
                     'title',
-                    'content:html',
+                    [
+                        'attribute' => 'content',
+                        'format' => 'html',
+                        'value' => StringHelper::truncate($model->content, 128, '...', null, true), 
+                    ],
                     'slug',
                     [
                         'attribute' => 'type_id',
