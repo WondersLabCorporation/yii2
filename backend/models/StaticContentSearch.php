@@ -41,7 +41,7 @@ class StaticContentSearch extends StaticContent
      */
     public function search($params)
     {
-        $query = StaticContent::find()->joinWith('type');
+        $query = self::find()->joinWith('type');
 
         // add conditions that should always apply here
 
@@ -59,16 +59,16 @@ class StaticContentSearch extends StaticContent
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            self::tableName() . '.id' => $this->id,
             'type_id' => $this->type_id,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            self::tableName() . '.status' => $this->status,
+            self::tableName() . '.created_at' => $this->created_at,
+            self::tableName() . '.updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'slug', $this->slug]);
+            ->andFilterWhere(['like', self::tableName() . '.slug', $this->slug]);
 
         return $dataProvider;
     }
