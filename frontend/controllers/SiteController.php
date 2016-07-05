@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\StaticContent;
+use frontend\models\StaticType;
 use Yii;
 use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -14,6 +16,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use frontend\models\User;
+use yii\web\NotFoundHttpException;
 
 /**
  * Site controller
@@ -63,6 +66,28 @@ class SiteController extends Controller
                 'class' => 'yii\web\ErrorAction',
             ],
         ];
+    }
+
+    /**
+     * @param $typeSlug string StaticType -> name field
+     * @param $titleSlug string StaticContent -> slug field
+     * @return mixed
+     * @throws NotFoundHttpException When no such page found
+     */
+    public function actionPage($typeSlug, $titleSlug)
+    {
+        $page = StaticContent::find()
+            ->joinWith('type')
+            ->andWhere([
+                StaticContent::tableName() . '.slug' => $titleSlug,
+                StaticType::tableName() . '.slug' => $typeSlug,
+                StaticType::tableName() . '.type' => StaticType::TYPE_PAGE,
+            ])->one();
+        if (!$page) {
+            throw new NotFoundHttpException();
+        }
+        
+        return $this->render('page', ['model' => $page]);
     }
 
     /**
