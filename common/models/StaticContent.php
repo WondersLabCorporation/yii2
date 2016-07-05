@@ -75,7 +75,7 @@ class StaticContent extends \common\overrides\db\ActiveRecord
     public function attributeLabels()
     {
         return array_merge(
-            parent::rules(),
+            parent::attributeLabels(),
             [
                 'id' => Yii::t('common', 'ID'),
                 'title' => Yii::t('common', 'Title'),
