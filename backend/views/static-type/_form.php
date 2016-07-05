@@ -16,6 +16,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+    <?php if ($model->isNewRecord || $model->type == StaticType::TYPE_PAGE) : ?>
+        <?= $form->field($model, 'slug')
+            ->widget(
+            // Adjusting Unlimited number widget to truncate field value when checkbox is checked
+            UnlimitedNumberInputWidget::className(),
+            [
+                'unlimitedValue' => null,
+                'checkboxOptions' => ['label' => Yii::t('backend', 'Generate automatically')],
+                'options' => ['type' => 'text'],
+            ]
+        ) ?>
+    <?php endif; ?>
+
     <?= $form->field($model, 'items_amount')->widget(UnlimitedNumberInputWidget::className()) ?>
 
     <?= $form->field($model, 'editor_type')->dropDownList(StaticType::getEditorTypeTexts()) ?>

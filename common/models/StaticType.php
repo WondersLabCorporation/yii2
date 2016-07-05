@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -56,6 +57,21 @@ class StaticType extends \common\overrides\db\ActiveRecord
         return '{{%static_type}}';
     }
 
+    public function behaviors()
+    {
+        return array_merge(
+            parent::behaviors(),
+            [
+                'slug' => [
+                    'class' => SluggableBehavior::className(),
+                    'attribute' => 'name',
+                    'ensureUnique' => true,
+                    'immutable' => true,
+                ],
+            ]
+        );
+    }
+
     /**
      * @inheritdoc
      */
@@ -80,16 +96,21 @@ class StaticType extends \common\overrides\db\ActiveRecord
     public function attributeLabels()
     {
         return array_merge(
-            parent::rules(),
+            parent::attributeLabels(),
             [
                 'id' => Yii::t('common', 'ID'),
                 'name' => Yii::t('common', 'Name'),
+                'slug' => Yii::t('common', 'Slug'),
                 'type' => Yii::t('common', 'Type'),
                 'items_amount' => Yii::t('common', 'Items Amount'),
                 'editor_type' => Yii::t('common', 'Editor Type'),
                 'status' => Yii::t('common', 'Status'),
                 'created_at' => Yii::t('common', 'Created At'),
                 'updated_at' => Yii::t('common', 'Updated At'),
+
+                'typeText' => Yii::t('common', 'Type'),
+                'editorTypeText' => Yii::t('common', 'Editor Type'),
+                'itemsAmountText' => Yii::t('common', 'Items Amount'),
             ]
         );
     }

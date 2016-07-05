@@ -30,6 +30,7 @@ class m160630_075627_create_cms_content extends \console\overrides\db\Migration
         $this->createTable($this->typeTableName, [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
+            'slug' => $this->string(),
             'type' => $this->integer()->defaultValue(StaticType::TYPE_PAGE),
             'items_amount' => $this->integer()->defaultValue(StaticType::AMOUNT_UNLIMITED),
             'editor_type' => $this->integer()->defaultValue(StaticType::EDITOR_TYPE_WYSIWYG),

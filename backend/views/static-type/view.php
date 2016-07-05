@@ -9,6 +9,27 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Static Types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$attributes = [
+    'id',
+    'name',
+];
+
+if ($model->type != \backend\models\StaticType::TYPE_PAGE_BLOCK) {
+    $attributes[] = 'slug';
+}
+
+$attributes = array_merge(
+    $attributes,
+    [
+        'typeText',
+        'itemsAmountText',
+        'editorTypeText',
+        'statusText',
+        'created_at:datetime',
+        'updated_at:datetime',
+    ]
+);
 ?>
 <div class="static-type-view">
     <div class="row">
@@ -27,16 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
             <?= DetailView::widget([
                 'model' => $model,
-                'attributes' => [
-                        'id',
-                        'name',
-                        'typeText',
-                        'itemsAmountText',
-                        'editorTypeText',
-                        'statusText',
-                        'created_at:datetime',
-                        'updated_at:datetime',
-                ],
+                'attributes' => $attributes
             ]) ?>
 
         </div>

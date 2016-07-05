@@ -15,6 +15,7 @@ class m160701_115715_default_cms_blocks extends Migration
             [
                 'id',
                 'name',
+                'slug',
                 'type',
                 'items_amount',
                 'editor_type',
@@ -26,6 +27,7 @@ class m160701_115715_default_cms_blocks extends Migration
                 [
                     StaticType::ID_PAGE,
                     'Page',
+                    'page',
                     StaticType::TYPE_PAGE,
                     StaticType::AMOUNT_UNLIMITED,
                     StaticType::EDITOR_TYPE_WYSIWYG,
@@ -36,6 +38,7 @@ class m160701_115715_default_cms_blocks extends Migration
                 [
                     StaticType::ID_CONTACTUS_BLOCK,
                     'Contact Us Block',
+                    'contact-us-block',
                     StaticType::TYPE_PAGE_BLOCK,
                     StaticType::AMOUNT_UNLIMITED,
                     StaticType::EDITOR_TYPE_WYSIWYG,
@@ -46,6 +49,7 @@ class m160701_115715_default_cms_blocks extends Migration
                 [
                     StaticType::ID_MAINCTA_BLOCK,
                     'Main CTA Block',
+                    'main-cta-block',
                     StaticType::TYPE_PAGE_BLOCK,
                     1,
                     StaticType::EDITOR_TYPE_WYSIWYG,
@@ -56,6 +60,7 @@ class m160701_115715_default_cms_blocks extends Migration
                 [
                     StaticType::ID_SECONDARYCTA_BLOCK,
                     'Secondary CTA Block',
+                    'secondary-cta-block',
                     StaticType::TYPE_PAGE_BLOCK,
                     1,
                     StaticType::EDITOR_TYPE_WYSIWYG,
@@ -66,6 +71,7 @@ class m160701_115715_default_cms_blocks extends Migration
                 [
                     StaticType::ID_HOME_BLOCK,
                     'Home Page Block',
+                    'home-page-block',
                     StaticType::TYPE_PAGE_BLOCK,
                     StaticType::AMOUNT_UNLIMITED,
                     StaticType::EDITOR_TYPE_WYSIWYG,
