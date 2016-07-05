@@ -99,7 +99,6 @@ class ActiveRecord extends \yii\db\ActiveRecord
      */
     public function getListAttributeText($attribute)
     {
-        // TODO: Need to find a more common solution instead of hardcoded method name
         $getListAttributeTexts = $this->generateTextsMethod($attribute);
         if (!$this->hasMethod($getListAttributeTexts) || empty($this->$getListAttributeTexts()[$this->$attribute])) {
             return null;
