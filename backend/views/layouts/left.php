@@ -3,15 +3,28 @@
 use backend\models\StaticType;
 
 $staticContentTypes = StaticType::activeItemsList();
-$staticContentTypesMenuItems = [];
-foreach (StaticType::activeItemsList() as $id => $name) {
+$staticContentPageTypes = [];
+$staticContentBlockTypes = [];
+foreach (StaticType::activeItemsList() as $id => $item) {
     // TODO: Find out a better solution instead of adding type_id everywhere
-    $staticContentTypesMenuItems[] = ['label' => $name, 'url' => ['/static-content', 'type_id' => $id]];
+    if ($item['type'] == StaticType::TYPE_PAGE_BLOCK) {
+        $staticContentBlockTypes[] = ['label' => $item['name'], 'url' => ['/static-content', 'type_id' => $id]];
+    }
+    else {
+        $staticContentPageTypes[] = ['label' => $item['name'], 'url' => ['/static-content', 'type_id' => $id]];
+    }
+}
+
+if (count($staticContentPageTypes) == 1) {
+    $staticPagesMenuItem = ['label' => Yii::t('backend', 'Static Pages'), 'url' => $staticContentPageTypes[0]['url']];
+} else {
+    $staticPagesMenuItem = ['label' => Yii::t('backend', 'Static Pages'), 'items' => $staticContentPageTypes];
 }
 
 $items = [
     'home' => ['label' => Yii::t('backend', 'Home'), 'url' => ['site/index']],
-    'static content' => ['label' => Yii::t('backend', 'Static Content'), 'items' => $staticContentTypesMenuItems],
+    'static pages' => $staticPagesMenuItem,
+    'static blocks' => ['label' => Yii::t('backend', 'Page blocks'), 'items' => $staticContentBlockTypes],
     'settings' => ['label' => Yii::t('backend', 'Settings'), 'items' => [
         'static content types' => ['label' => Yii::t('backend', 'Static Content Types'), 'url' => ['/static-type']],
     ]],

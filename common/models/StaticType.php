@@ -150,6 +150,6 @@ class StaticType extends \common\overrides\db\ActiveRecord
     public static function activeItemsList()
     {
         // TODO: Add caching
-        return ArrayHelper::map(self::find()->active()->asArray()->all(), 'id', 'name');
+        return self::find()->active()->asArray()->indexBy('id')->all();
     }
 }
