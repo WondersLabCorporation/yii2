@@ -6,6 +6,8 @@ $params = array_merge(
     require(__DIR__ . '/params-local.php')
 );
 
+$frontendUrlManager = require(__DIR__. '/../../frontend/config/urlManager.php');
+
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
@@ -39,6 +41,7 @@ return [
                 ],
             ],
         ],
+        'frontendUrlManager' => $frontendUrlManager,
     ],
     'params' => $params,
 ];
