@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e5f8ac80558f18ed7d61947a154be27f",
-    "content-hash": "57f4cc7857548fec8911826737b6bced",
+    "hash": "18e385eabb8f0ebde9f82efdf279511b",
+    "content-hash": "89de5cb4e596dc60afc477ef4f20031f",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -73,7 +73,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WondersLabCorporation/yii2-unlimited-number-input-widget.git",
-                "reference": "46411e7f1910ce33224e4645ff7bc796181dea3d"
+                "reference": "12e8425c97402341eb7a33e7f2a03d3e4f424afc"
             },
             "require": {
                 "yiisoft/yii2": "~2.0",
@@ -110,20 +110,20 @@
                 "issues": "https://github.com/WondersLabCorporation/yii2-unlimited-number-input-widget/issues",
                 "source": "https://github.com/WondersLabCorporation/yii2-unlimited-number-input-widget"
             },
-            "time": "2016-07-01 09:36:26"
+            "time": "2016-07-04 10:14:01"
         },
         {
             "name": "almasaeed2010/adminlte",
-            "version": "v2.3.3",
+            "version": "v2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/almasaeed2010/AdminLTE.git",
-                "reference": "8db979795044412a2e2b4e9659788c23cb59fcd3"
+                "reference": "0ab2eb7f382e79810ebf3032ce766a02af2b0f3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/8db979795044412a2e2b4e9659788c23cb59fcd3",
-                "reference": "8db979795044412a2e2b4e9659788c23cb59fcd3",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/0ab2eb7f382e79810ebf3032ce766a02af2b0f3b",
+                "reference": "0ab2eb7f382e79810ebf3032ce766a02af2b0f3b",
                 "shasum": ""
             },
             "type": "library",
@@ -150,7 +150,7 @@
                 "theme",
                 "web"
             ],
-            "time": "2016-03-24 14:31:41"
+            "time": "2016-07-03 15:21:22"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -470,16 +470,16 @@
         },
         {
             "name": "dmstr/yii2-adminlte-asset",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmstr/yii2-adminlte-asset.git",
-                "reference": "73eca05cf04d70f169a88b430d2c03c3b54d623a"
+                "reference": "e9e5a843e47f47af61146524af99c0e98d8f5f90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/73eca05cf04d70f169a88b430d2c03c3b54d623a",
-                "reference": "73eca05cf04d70f169a88b430d2c03c3b54d623a",
+                "url": "https://api.github.com/repos/dmstr/yii2-adminlte-asset/zipball/e9e5a843e47f47af61146524af99c0e98d8f5f90",
+                "reference": "e9e5a843e47f47af61146524af99c0e98d8f5f90",
                 "shasum": ""
             },
             "require": {
@@ -520,7 +520,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2016-03-23 04:18:15"
+            "time": "2016-05-31 15:42:01"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -615,6 +615,58 @@
             "time": "2016-06-10 15:38:28"
         },
         {
+            "name": "imagine/imagine",
+            "version": "v0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/avalanche123/Imagine.git",
+                "reference": "f64ec666baaa800edcbf237db41121a569230709"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/f64ec666baaa800edcbf237db41121a569230709",
+                "reference": "f64ec666baaa800edcbf237db41121a569230709",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "sami/sami": "dev-master"
+            },
+            "suggest": {
+                "ext-gd": "to use the GD implementation",
+                "ext-gmagick": "to use the Gmagick implementation",
+                "ext-imagick": "to use the Imagick implementation"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Imagine": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bulat Shakirzyanov",
+                    "email": "mallluhuct@gmail.com",
+                    "homepage": "http://avalanche123.com"
+                }
+            ],
+            "description": "Image processing for PHP 5.3",
+            "homepage": "http://imagine.readthedocs.org/",
+            "keywords": [
+                "drawing",
+                "graphics",
+                "image manipulation",
+                "image processing"
+            ],
+            "time": "2013-07-10 17:25:36"
+        },
+        {
             "name": "odaialali/yii2-toastr",
             "version": "dev-master",
             "source": {
@@ -707,6 +759,52 @@
                 "yii"
             ],
             "time": "2016-05-28 21:18:32"
+        },
+        {
+            "name": "sadovojav/yii2-image-cutter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sadovojav/yii2-image-cutter.git",
+                "reference": "9927e1744882079bb3ddb158536c2c095a348e82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sadovojav/yii2-image-cutter/zipball/9927e1744882079bb3ddb158536c2c095a348e82",
+                "reference": "9927e1744882079bb3ddb158536c2c095a348e82",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-imagine": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "sadovojav\\cutter\\Bootstrap"
+            },
+            "autoload": {
+                "psr-4": {
+                    "sadovojav\\cutter\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Aleksandr Sadovoj",
+                    "email": "sadovojav@gmail.com",
+                    "homepage": "https://github.com/sadovojav"
+                }
+            ],
+            "description": "Yii2 crop image widget",
+            "keywords": [
+                "crop",
+                "cutter",
+                "image",
+                "upload",
+                "yii2"
+            ],
+            "time": "2016-05-05 14:50:16"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -997,6 +1095,54 @@
                 "yii2"
             ],
             "time": "2016-02-06 00:49:24"
+        },
+        {
+            "name": "yiisoft/yii2-imagine",
+            "version": "2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-imagine.git",
+                "reference": "0961343138b65bba447de84b2b300899617e6acc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-imagine/zipball/0961343138b65bba447de84b2b300899617e6acc",
+                "reference": "0961343138b65bba447de84b2b300899617e6acc",
+                "shasum": ""
+            },
+            "require": {
+                "imagine/imagine": "0.5.*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\imagine\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "amigo.cobos@gmail.com"
+                }
+            ],
+            "description": "The Imagine integration for the Yii framework",
+            "keywords": [
+                "helper",
+                "image",
+                "imagine",
+                "yii2"
+            ],
+            "time": "2015-03-01 06:22:44"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -1360,7 +1506,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "odaialali/yii2-toastr": 20,
-        "wonderslabcorporation/yii2-unlimited-number-input-widget": 20
+        "wonderslabcorporation/yii2-unlimited-number-input-widget": 20,
+        "sadovojav/yii2-image-cutter": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

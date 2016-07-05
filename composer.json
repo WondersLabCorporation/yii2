@@ -22,7 +22,8 @@
         "dmstr/yii2-adminlte-asset": "^2.3",
         "himiklab/yii2-recaptcha-widget": "^1.0",
         "WondersLabCorporation/yii2-unlimited-number-input-widget": "dev-master",
-        "2amigos/yii2-tinymce-widget": "^1.1"
+        "2amigos/yii2-tinymce-widget": "^1.1",
+        "sadovojav/yii2-image-cutter": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
