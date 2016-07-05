@@ -24,7 +24,27 @@ $columns = [
 
 if ($searchModel->type->type != \backend\models\StaticType::TYPE_PAGE_BLOCK) {
     // TODO: Show as a link to frontend
-    $columns[] = 'slug';
+    $columns[] = [
+        'attribute' => 'slug',
+        'format' => 'raw',
+        'value' => function ($model) {
+            if (!isset(Yii::$app->components['frontendUrlManager'])) {
+                return $model->slug;
+            }
+            return Html::a(
+                $model->type->slug . '/' . $model->slug,
+                Yii::$app->frontendUrlManager->createAbsoluteUrl([
+                    'site/page',
+                    'typeSlug' => $model->type->slug,
+                    'titleSlug' => $model->slug,
+                ]),
+                [
+                    'target' => '_blank',
+                    'title' => Yii::t('backend', 'View on frontend'),
+                ]
+            );
+        }
+    ];
 }
 
 $columns[] = ['class' => 'common\overrides\grid\ActionColumn'];
