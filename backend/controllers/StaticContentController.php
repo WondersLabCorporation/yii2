@@ -80,10 +80,17 @@ class StaticContentController extends BaseController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @param $type_id integer ID of the content type to be created
      * @return mixed
+     * @throws NotFoundHttpException
      */
     public function actionCreate($type_id)
     {
         $model = new StaticContent(['type_id' => $type_id]);
+
+        if (!$model->type) {
+            Yii::error('Attempt to create content with type ID:' . $type_id, 'static_content');
+            throw new NotFoundHttpException('No such Content type exists');
+        }
+
         if ($model->type->items_amount == 1 && $contentItem = $model->type->getContentItems()->one()) {
             Yii::$app->session->addFlash(
                 'warning',
