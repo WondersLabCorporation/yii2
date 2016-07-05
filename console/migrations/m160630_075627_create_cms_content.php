@@ -17,7 +17,7 @@ class m160630_075627_create_cms_content extends \console\overrides\db\Migration
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
             'title' => $this->string()->notNull(),
-            'content' => $this->string()->notNull(),
+            'content' => $this->text()->notNull(),
             'slug' => $this->string(),
             'type_id' => $this->integer(),
             // TODO: Add image

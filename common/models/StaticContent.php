@@ -62,7 +62,8 @@ class StaticContent extends \common\overrides\db\ActiveRecord
             [
                 [['title', 'content'], 'required'],
                 [['type_id', 'status', 'created_at', 'updated_at'], 'integer'],
-                [['title', 'content', 'slug'], 'string', 'max' => 255],
+                [['title', 'slug'], 'string', 'max' => 255],
+                [['content'], 'string'],
                 [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => StaticType::className(), 'targetAttribute' => ['type_id' => 'id']],
            ]
         );
