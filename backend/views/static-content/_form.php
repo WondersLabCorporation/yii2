@@ -1,6 +1,5 @@
 <?php
 
-use backend\models\StaticContent;
 use backend\models\StaticType;
 use WondersLabCorporation\UnlimitedNumber\UnlimitedNumberInputWidget;
 use yii\helpers\Html;
@@ -30,16 +29,18 @@ use yii\widgets\ActiveForm;
         <?php break;
             endswitch; ?>
 
-    <?= $form->field($model, 'slug')
-        ->widget(
-            // Adjusting Unlimited number widget to truncate field value when checkbox is checked
-            UnlimitedNumberInputWidget::className(),
-            [
-                'unlimitedValue' => null,
-                'checkboxOptions' => ['label' => Yii::t('backend', 'Generate automatically')],
-                'options' => ['type' => 'text'],
-            ]
-    ) ?>
+    <?php if ($model->type->type == StaticType::TYPE_PAGE) : ?>
+        <?= $form->field($model, 'slug')
+            ->widget(
+                // Adjusting Unlimited number widget to truncate field value when checkbox is checked
+                UnlimitedNumberInputWidget::className(),
+                [
+                    'unlimitedValue' => null,
+                    'checkboxOptions' => ['label' => Yii::t('backend', 'Generate automatically')],
+                    'options' => ['type' => 'text'],
+                ]
+        ) ?>
+    <?php endif;?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

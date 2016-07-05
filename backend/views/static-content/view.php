@@ -10,6 +10,36 @@ use yii\widgets\DetailView;
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', '{type} items', ['type' => $model->type->name]), 'url' => ['index', 'type_id' => $model->type_id]];
 $this->params['breadcrumbs'][] = $this->title;
+
+$attributes = [
+    'id',
+    'title',
+    [
+        'attribute' => 'content',
+        'format' => 'html',
+        'value' => StringHelper::truncate($model->content, 128, '...', null, true),
+    ],
+];
+
+if ($model->type->type != \backend\models\StaticType::TYPE_PAGE_BLOCK) {
+    $attributes[] = 'slug';
+}
+
+$attributes = array_merge(
+    $attributes,
+    [
+        [
+            'attribute' => 'type_id',
+            'value' => $model->type->name,
+        ],
+        [
+            'attribute' => 'status',
+            'value' => $model->statusText,
+        ],
+        'created_at:datetime',
+        'updated_at:datetime',
+    ]
+);
 ?>
 <div class="static-content-view">
     <div class="row">
@@ -28,26 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
             <?= DetailView::widget([
                 'model' => $model,
-                'attributes' => [
-                    'id',
-                    'title',
-                    [
-                        'attribute' => 'content',
-                        'format' => 'html',
-                        'value' => StringHelper::truncate($model->content, 128, '...', null, true), 
-                    ],
-                    'slug',
-                    [
-                        'attribute' => 'type_id',
-                        'value' => $model->type->name,
-                    ],
-                    [
-                        'attribute' => 'status',
-                        'value' => $model->statusText,
-                    ],
-                    'created_at:datetime',
-                    'updated_at:datetime',
-                ],
+                'attributes' => $attributes
             ]) ?>
 
         </div>
