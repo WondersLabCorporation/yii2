@@ -6,5 +6,6 @@ return [
     'enablePrettyUrl' => true,   // Disable r= routes
     'enableStrictParsing' => false,
     'rules' => [
+        'site/<typeSlug>/<titleSlug>' => 'site/page',
     ],
 ];
