@@ -86,7 +86,7 @@ class StaticContentController extends BaseController
     {
         $model = new StaticContent(['type_id' => $type_id]);
 
-        if (!$model->type) {
+        if (!$model->validate(['type_id'])) {
             Yii::error('Attempt to create content with type ID:' . $type_id, 'static_content');
             throw new NotFoundHttpException('No such Content type exists');
         }
