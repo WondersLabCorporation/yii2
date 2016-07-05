@@ -1,7 +1,7 @@
 #Development config to run deploy to the same server where Magellan is installed
 deployment:
   user: mage
-  to: /var/www/html/PROJECT_NAME.dev.wonderslab.com/
+  to: /var/www/html/yii2-template.dev.wonderslab.com/
   stratagy: disabled
 hosts:
   - 127.0.0.1:6022
