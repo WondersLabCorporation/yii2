@@ -7,6 +7,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use common\overrides\helpers\HtmlPurifier;
 
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
@@ -18,11 +19,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php if (!empty($contactUsBlocks)) : ?>
             <div class="col-md-6 col-sm-12">
                 <?php foreach($contactUsBlocks as $contactUsBlock) : ?>
-                    <h4><?= $contactUsBlock->title ?></h4>
+                    <h4><?= Html::encode($contactUsBlock->title) ?></h4>
                     <?php if ($contactUsBlock->type->is_image_required): ?>
                         <?= Html::img($contactUsBlock->getImageAbsoluteUrl()) ?>
                     <?php endif; ?>
-                    <?= $contactUsBlock->content ?>
+                    <?= HtmlPurifier::process($contactUsBlock->content) ?>
                 <?php endforeach; ?>
             </div>
         <?php endif;?>

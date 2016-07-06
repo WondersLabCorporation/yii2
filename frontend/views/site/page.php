@@ -4,6 +4,7 @@
 /* @var $model \frontend\models\StaticContent */
 
 use yii\helpers\Html;
+use common\overrides\helpers\HtmlPurifier;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = $this->title;
@@ -15,5 +16,5 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::img($model->getImageAbsoluteUrl()) ?>
     <?php endif; ?>
 
-    <?= $model->content ?>
+    <?= HtmlPurifier::process($model->content) ?>
 </div>

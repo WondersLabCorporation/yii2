@@ -6,6 +6,7 @@
 /* @var $homeBlocks \frontend\models\StaticContent[] */
 
 use yii\helpers\Html;
+use common\overrides\helpers\HtmlPurifier;
 
 $this->title = Yii::$app->name;
 ?>
@@ -19,7 +20,7 @@ $this->title = Yii::$app->name;
                 <?php if ($mainCTABlock->type->is_image_required): ?>
                     <?= Html::img($mainCTABlock->getImageAbsoluteUrl()) ?>
                 <?php endif; ?>
-                <?= $mainCTABlock->content ?>
+                <?= HtmlPurifier::process($mainCTABlock->content) ?>
             </div>
         </div>
     <?php endif ;?>
@@ -30,7 +31,7 @@ $this->title = Yii::$app->name;
             <?php if ($secondaryCTABlock->type->is_image_required): ?>
                 <?= Html::img($secondaryCTABlock->getImageAbsoluteUrl()) ?>
             <?php endif; ?>
-            <?= $secondaryCTABlock->content ?>
+            <?= HtmlPurifier::process($secondaryCTABlock->content) ?>
         </div>
     <?php endif ;?>
 
@@ -44,7 +45,7 @@ $this->title = Yii::$app->name;
                         <?php if ($homeBlock->type->is_image_required): ?>
                             <?= Html::img($homeBlock->getImageAbsoluteUrl()) ?>
                         <?php endif; ?>
-                        <?= $homeBlock->content ?>
+                        <?= HtmlPurifier::process($homeBlock->content) ?>
                     </div>
                 <?php endforeach;?>
             <?php endif ;?>
