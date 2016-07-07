@@ -34,6 +34,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'editor_type')->dropDownList(StaticType::getEditorTypeTexts()) ?>
 
+    <?= $form->field($model ,'status')->dropDownList(StaticType::getStatusTexts()); ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

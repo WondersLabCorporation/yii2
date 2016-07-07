@@ -54,6 +54,16 @@ class StaticType extends \common\overrides\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function getStatusTexts()
+    {
+        $statusTexts = parent::getStatusTexts();
+        $statusTexts[self::STATUS_DELETED] = Yii::t('app', 'Disabled');
+        return $statusTexts;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public static function tableName()
     {
         return '{{%static_type}}';

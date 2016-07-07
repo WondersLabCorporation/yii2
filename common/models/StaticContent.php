@@ -24,6 +24,16 @@ use sadovojav\cutter\behaviors\CutterBehavior;
 class StaticContent extends \common\overrides\db\ActiveRecord
 {
     public $namespace = 'common\models';
+
+    /**
+     * @inheritdoc
+     */
+    public static function getStatusTexts()
+    {
+        $statusTexts = parent::getStatusTexts();
+        $statusTexts[self::STATUS_DELETED] = Yii::t('app', 'Disabled');
+        return $statusTexts;
+    }
     
     public function behaviors()
     {

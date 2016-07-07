@@ -48,6 +48,8 @@ use yii\widgets\ActiveForm;
     <?php if ($model->type->is_image_required) : ?>
         <?= $form->field($model, 'image')->widget(Cutter::className(), ['cropperOptions' => ['aspectRatio' => 1]]); ?>
     <?php endif;?>
+    
+    <?= $form->field($model ,'status')->dropDownList(\backend\models\StaticContent::getStatusTexts()); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
