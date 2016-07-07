@@ -33,7 +33,7 @@ if ($searchModel->type->type != \backend\models\StaticType::TYPE_PAGE_BLOCK) {
                 return $model->slug;
             }
             return Html::a(
-                $model->type->slug . '/' . $model->slug,
+                'site/' . $model->type->slug . '/' . $model->slug,
                 Yii::$app->frontendUrlManager->createAbsoluteUrl([
                     'site/page',
                     'typeSlug' => $model->type->slug,

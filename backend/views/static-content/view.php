@@ -22,7 +22,22 @@ $attributes = [
 ];
 
 if ($model->type->type != \backend\models\StaticType::TYPE_PAGE_BLOCK) {
-    $attributes[] = 'slug';
+    $attributes[] = [
+        'attribute' => 'slug',
+        'format' => 'raw',
+        'value' => Html::a(
+            'site/' . $model->type->slug . '/' . $model->slug,
+            Yii::$app->frontendUrlManager->createAbsoluteUrl([
+                'site/page',
+                'typeSlug' => $model->type->slug,
+                'titleSlug' => $model->slug,
+            ]),
+            [
+                'target' => '_blank',
+                'title' => Yii::t('backend', 'View on frontend'),
+            ]
+        ),
+    ];
 }
 
 if ($model->type->is_image_required) {
