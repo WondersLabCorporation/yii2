@@ -181,9 +181,13 @@ class StaticType extends \common\overrides\db\ActiveRecord
         return is_string($this->items_amount) && strtolower($this->items_amount) == 'unlimited';
     }
     
-    public static function activeItemsList()
+    public static function itemsList($active = true)
     {
         // TODO: Add caching
-        return self::find()->active()->asArray()->indexBy('id')->all();
+        $query = self::find();
+        if ($active) {
+            $query->active();
+        }
+        return $query->asArray()->indexBy('id')->all();
     }
 }

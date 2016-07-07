@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="static-content-create">
     <div class="row">
         <div class="col-lg-6 col-md-12">
+            <?= $this->render('_disabledWarning', ['model' => $model->type]); ?>
             
             <?= $this->render('_form', [
                 'model' => $model,

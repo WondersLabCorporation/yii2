@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = Yii::t('backend', 'Update');
 <div class="static-content-update">
     <div class="row">
         <div class="col-lg-6 col-md-12">
+            <?= $this->render('_disabledWarning', ['model' => $model->type]); ?>
 
             <?= $this->render('_form', [
                 'model' => $model,

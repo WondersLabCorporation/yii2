@@ -1,5 +1,6 @@
 <?php
 
+use backend\models\StaticType;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\StringHelper;
@@ -47,9 +48,15 @@ if ($searchModel->type->type != \backend\models\StaticType::TYPE_PAGE_BLOCK) {
     ];
 }
 
+$columns[] = [
+    'attribute' => 'status',
+    'value' => 'statusText',
+    'filter' => \backend\models\StaticContent::getStatusTexts(),
+];
 $columns[] = ['class' => 'common\overrides\grid\ActionColumn'];
 ?>
 <div class="static-content-index">
+    <?= $this->render('_disabledWarning', ['model' => $searchModel->type]); ?>
     <p>
         <?= Html::a(Yii::t('backend', 'Create {type}', ['type' => $searchModel->type->name]), ['create', 'type_id' => $searchModel->type_id], ['class' => 'btn btn-success']) ?>
     </p>

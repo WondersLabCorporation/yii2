@@ -2,10 +2,9 @@
 
 use backend\models\StaticType;
 
-$staticContentTypes = StaticType::activeItemsList();
 $staticContentPageTypes = [];
 $staticContentBlockTypes = [];
-foreach (StaticType::activeItemsList() as $id => $item) {
+foreach (StaticType::itemsList(false) as $id => $item) {
     // TODO: Find out a better solution instead of adding type_id everywhere
     if ($item['type'] == StaticType::TYPE_PAGE_BLOCK) {
         $staticContentBlockTypes[] = ['label' => $item['name'], 'url' => ['/static-content', 'type_id' => $id]];

@@ -52,7 +52,7 @@ $attributes = array_merge(
 <div class="static-content-view">
     <div class="row">
         <div class="col-lg-6 col-md-12">
-
+            <?= $this->render('_disabledWarning', ['model' => $model->type]); ?>
             <p>
                 <?= Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id, 'type_id' => $model->type_id], ['class' => 'btn btn-primary']) ?>
                 <?= Html::a(Yii::t('backend', 'Delete'), ['delete', 'id' => $model->id], [
