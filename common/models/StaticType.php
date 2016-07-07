@@ -82,7 +82,7 @@ class StaticType extends \common\overrides\db\ActiveRecord
         return array_merge(
             parent::rules(),
             [
-                [['name'], 'required'],
+                [['name', 'items_amount'], 'required'],
                 [['type', 'items_amount', 'editor_type', 'status', 'created_at', 'updated_at'], 'integer'],
                 [['name', 'slug'], 'string', 'max' => 255],
                 ['is_image_required', 'boolean'],

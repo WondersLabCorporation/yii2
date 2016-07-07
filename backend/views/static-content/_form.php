@@ -38,6 +38,7 @@ use yii\widgets\ActiveForm;
                 UnlimitedNumberInputWidget::className(),
                 [
                     'unlimitedValue' => null,
+                    'emptyValue' => '',
                     'checkboxOptions' => ['label' => Yii::t('backend', 'Generate automatically')],
                     'options' => ['type' => 'text'],
                 ]

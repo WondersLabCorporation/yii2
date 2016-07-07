@@ -73,7 +73,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WondersLabCorporation/yii2-unlimited-number-input-widget.git",
-                "reference": "12e8425c97402341eb7a33e7f2a03d3e4f424afc"
+                "reference": "677555c49c3f3347cdd70e7f36c80cc58329ba3a"
             },
             "require": {
                 "yiisoft/yii2": "~2.0",
@@ -110,7 +110,7 @@
                 "issues": "https://github.com/WondersLabCorporation/yii2-unlimited-number-input-widget/issues",
                 "source": "https://github.com/WondersLabCorporation/yii2-unlimited-number-input-widget"
             },
-            "time": "2016-07-04 10:14:01"
+            "time": "2016-07-07 13:27:07"
         },
         {
             "name": "almasaeed2010/adminlte",

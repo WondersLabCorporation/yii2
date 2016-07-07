@@ -23,13 +23,14 @@ use yii\widgets\ActiveForm;
             UnlimitedNumberInputWidget::className(),
             [
                 'unlimitedValue' => null,
+                'emptyValue' => '',
                 'checkboxOptions' => ['label' => Yii::t('backend', 'Generate automatically')],
                 'options' => ['type' => 'text'],
             ]
         ) ?>
     <?php endif; ?>
 
-    <?= $form->field($model, 'items_amount')->widget(UnlimitedNumberInputWidget::className()) ?>
+    <?= $form->field($model, 'items_amount')->widget(UnlimitedNumberInputWidget::className(), ['emptyValue' => 1]) ?>
 
     <?= $form->field($model, 'editor_type')->dropDownList(StaticType::getEditorTypeTexts()) ?>
 

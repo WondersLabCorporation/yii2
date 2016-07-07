@@ -58,7 +58,10 @@ class StaticTypeController extends BaseController
      */
     public function actionCreate()
     {
-        $model = new StaticType();
+        $model = new StaticType([
+            // Setting items amount to Unlimited by default
+            'items_amount' => StaticType::AMOUNT_UNLIMITED,
+        ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->addFlash('success', Yii::t('backend', 'Static Type created successfully.'));
