@@ -41,7 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => StaticType::getStatusTexts(),
             ],
 
-            ['class' => 'common\overrides\grid\ActionColumn'],
+            [
+                'class' => 'common\overrides\grid\ActionColumn',
+                'template' =>  "{view}\n\r{update}\n\r{delete}\n\r{disable}\n\r{activate}",
+            ],
         ],
     ]); ?>
 </div>

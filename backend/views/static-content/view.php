@@ -77,6 +77,22 @@ $attributes = array_merge(
                         'method' => 'post',
                     ],
                 ]) ?>
+                <?php // TODO: A possibility for a good widget ?>
+                <?php if ($model->status == \backend\models\StaticContent::STATUS_ACTIVE) : ?>
+                    <?= Html::a(Yii::t('backend', 'Disable'), ['disable', 'id' => $model->id], [
+                        'class' => 'btn btn-warning',
+                        'data' => [
+                            'method' => 'post',
+                        ],
+                    ]) ?>
+                <?php else: ?>
+                    <?= Html::a(Yii::t('backend', 'Activate'), ['activate', 'id' => $model->id], [
+                        'class' => 'btn btn-success',
+                        'data' => [
+                            'method' => 'post',
+                        ],
+                    ]) ?>
+                <?php endif; ?>
             </p>
             
             <?= DetailView::widget([

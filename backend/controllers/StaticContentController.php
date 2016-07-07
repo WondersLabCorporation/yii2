@@ -21,7 +21,14 @@ class StaticContentController extends BaseController
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        // Adjust behaviors here
+        $behaviors['verbs'] = [
+            'class' => VerbFilter::className(),
+            'actions' => [
+                'delete' => ['post'],
+                'disable' => ['post'],
+                'activate' => ['post'],
+            ],
+        ];
         return $behaviors;
     }
 
@@ -57,6 +64,8 @@ class StaticContentController extends BaseController
             return $this->redirect(['create', 'type_id' => $searchModel->type_id]);
         }
 
+        Yii::$app->user->setReturnUrl(Yii::$app->request->url);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -70,6 +79,8 @@ class StaticContentController extends BaseController
      */
     public function actionView($id)
     {
+        Yii::$app->user->setReturnUrl(Yii::$app->request->url);
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -148,6 +159,44 @@ class StaticContentController extends BaseController
         $contentItem->delete();
         Yii::$app->session->addFlash('success', Yii::t('backend', '{type} Static Content deleted successfully.', ['type' => $type->name]));
         return $this->redirect(['index', 'type_id' => $type->id]);
+    }
+
+    /**
+     * Disabled an existing StaticContent model.
+     * If disable is successful, the browser will be redirected back
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDisable($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = StaticContent::STATUS_DELETED;
+        if ($model->save()) {
+            Yii::$app->session->addFlash('success', Yii::t('backend', 'Item disabled successfully.'));
+        } else {
+            Yii::error('Failed to disable StaticContent. Errors: ' . json_encode($model), 'static_content');
+            Yii::$app->session->addFlash('error', Yii::t('backend', 'Failed to disable item.'));
+        }
+        return $this->goBack(Yii::$app->urlManager->createUrl(['view', 'id' => $model->id, 'type_id' => $model->type_id]));
+    }
+
+    /**
+     * Activating an existing StaticContent model.
+     * If activate is successful, the browser will be redirected back
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionActivate($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = StaticContent::STATUS_ACTIVE;
+        if ($model->save()) {
+            Yii::$app->session->addFlash('success', Yii::t('backend', 'Item activated successfully.'));
+        } else {
+            Yii::error('Failed to activate StaticContent. Errors: ' . json_encode($model), 'static_content');
+            Yii::$app->session->addFlash('error', Yii::t('backend', 'Failed to activate item.'));
+        }
+        return $this->goBack(Yii::$app->urlManager->createUrl(['view', 'id' => $model->id, 'type_id' => $model->type_id]));
     }
 
     /**

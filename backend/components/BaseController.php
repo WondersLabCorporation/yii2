@@ -35,4 +35,6 @@ class BaseController extends Controller
         ];
         return $behaviors;
     }
+    
+    // TODO: CRUD and disable/activate actions might be copy-pasted a lot of times. Need to be moved to trait or separate Action classes probably
 }

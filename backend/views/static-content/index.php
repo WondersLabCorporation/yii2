@@ -1,6 +1,5 @@
 <?php
 
-use backend\models\StaticType;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\StringHelper;
@@ -53,7 +52,10 @@ $columns[] = [
     'value' => 'statusText',
     'filter' => \backend\models\StaticContent::getStatusTexts(),
 ];
-$columns[] = ['class' => 'common\overrides\grid\ActionColumn'];
+$columns[] = [
+    'class' => 'common\overrides\grid\ActionColumn',
+    'template' =>  "{view}\n\r{update}\n\r{delete}\n\r{disable}\n\r{activate}",
+];
 ?>
 <div class="static-content-index">
     <?= $this->render('_disabledWarning', ['model' => $searchModel->type]); ?>
