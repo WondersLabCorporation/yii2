@@ -99,6 +99,7 @@ class StaticType extends \common\overrides\db\ActiveRecord
                 ['editor_type', 'in', 'range' => [self::EDITOR_TYPE_TEXTAREA, self::EDITOR_TYPE_TEXTINPUT, self::EDITOR_TYPE_WYSIWYG]],
                 ['type', 'in', 'range' => [self::TYPE_PAGE, self::TYPE_PAGE_BLOCK]],
                 ['type', 'default', 'value' => self::TYPE_PAGE],
+                // TODO: Add filtering for slug in case it is filled in manually to prevent XSS in URL, and admin panel.
            ]
         );
     }
