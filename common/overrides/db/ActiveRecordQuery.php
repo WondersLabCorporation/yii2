@@ -11,7 +11,8 @@ class ActiveRecordQuery extends \yii\db\ActiveQuery
 {
     public function active()
     {
-        $this->andWhere(['status' => constant($this->modelClass . '::STATUS_ACTIVE')]);
+        $modelClass = $this->modelClass;
+        $this->andWhere([$modelClass::tableName() . '.status' => constant($modelClass . '::STATUS_ACTIVE')]);
         return $this;
     }
 
