@@ -16,7 +16,7 @@ class StaticContent extends \common\models\StaticContent
     public static function findAllByTypeId($type_id)
     {
         // TODO: Same issue as in parent. Refactor this once TODO in parent is resolved
-        return self::find()->joinWith('type')->andWhere([StaticType::tableName() . '.id' => $type_id])->active()->all();
+        return self::find()->joinWith('type')->andWhere([StaticType::tableName() . '.id' => $type_id, StaticType::tableName() . '.status' => StaticType::STATUS_ACTIVE])->active()->all();
     }
 
     /**
@@ -26,6 +26,6 @@ class StaticContent extends \common\models\StaticContent
     public static function findOneByTypeId($type_id)
     {
         // TODO: Same issue as in parent. Refactor this once TODO in parent is resolved
-        return self::find()->joinWith('type')->andWhere([StaticType::tableName() . '.id' => $type_id])->active()->limit(1)->one();
+        return self::find()->joinWith('type')->andWhere([StaticType::tableName() . '.id' => $type_id, StaticType::tableName() . '.status' => StaticType::STATUS_ACTIVE])->active()->limit(1)->one();
     }
 }
