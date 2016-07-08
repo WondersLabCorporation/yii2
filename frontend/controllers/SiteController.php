@@ -82,7 +82,10 @@ class SiteController extends Controller
                 StaticContent::tableName() . '.slug' => $titleSlug,
                 StaticType::tableName() . '.slug' => $typeSlug,
                 StaticType::tableName() . '.type' => StaticType::TYPE_PAGE,
-            ])->one();
+                StaticType::tableName() . '.status' => StaticType::STATUS_ACTIVE,
+            ])
+            ->active()
+            ->one();
         if (!$page) {
             throw new NotFoundHttpException();
         }

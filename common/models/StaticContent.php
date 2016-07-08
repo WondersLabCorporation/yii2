@@ -157,4 +157,13 @@ class StaticContent extends \common\overrides\db\ActiveRecord
         }
         return Yii::$app->urlManager->createUrl($this->image);
     }
+
+    public function isActive($checkTypeStatus = true)
+    {
+        if ($checkTypeStatus) {
+            $staticTypeClass = $this->getCurrentNamespace('StaticType');
+            return $this->status == self::STATUS_ACTIVE && $this->type->status == constant($staticTypeClass . '::STATUS_ACTIVE');
+        }
+        return $this->status == self::STATUS_ACTIVE;
+    }
 }

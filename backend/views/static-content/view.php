@@ -22,11 +22,17 @@ $attributes = [
 ];
 
 if ($model->type->type != \backend\models\StaticType::TYPE_PAGE_BLOCK) {
-    $attributes[] = [
+    $slugItem = [
         'attribute' => 'slug',
         'format' => 'raw',
-        'value' => Html::a(
-            'site/' . $model->type->slug . '/' . $model->slug,
+    ];
+    $urlText = 'site/' . $model->type->slug . '/' . $model->slug;
+    if (!$model->isActive()) {
+        // Model is disabled, so no frontend page exist
+        $slugItem['value'] = $urlText;
+    } else {
+        $slugItem['value'] = Html::a(
+            $urlText,
             Yii::$app->frontendUrlManager->createAbsoluteUrl([
                 'site/page',
                 'typeSlug' => $model->type->slug,
@@ -36,8 +42,9 @@ if ($model->type->type != \backend\models\StaticType::TYPE_PAGE_BLOCK) {
                 'target' => '_blank',
                 'title' => Yii::t('backend', 'View on frontend'),
             ]
-        ),
-    ];
+        );
+    }
+    $attributes[] = $slugItem;
 }
 
 if ($model->type->is_image_required) {

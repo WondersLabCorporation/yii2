@@ -31,8 +31,13 @@ if ($searchModel->type->type != \backend\models\StaticType::TYPE_PAGE_BLOCK) {
             if (!isset(Yii::$app->components['frontendUrlManager'])) {
                 return $model->slug;
             }
+            $urlText = 'site/' . $model->type->slug . '/' . $model->slug;
+            if (!$model->isActive()) {
+                // Model is disabled, so no frontend page exist
+                return $urlText;
+            }
             return Html::a(
-                'site/' . $model->type->slug . '/' . $model->slug,
+                $urlText,
                 Yii::$app->frontendUrlManager->createAbsoluteUrl([
                     'site/page',
                     'typeSlug' => $model->type->slug,
