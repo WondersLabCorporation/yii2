@@ -13,7 +13,7 @@ if(!empty(Yii::$app->components['frontendUrlManager'])) {
     'mail',
     'Hello {username}. This email was sent to you in order to verify your email address. Please follow the link below to proceed. In case you did not request this email, please ignore it.',
     [
-        'username' => $user->username,
+        'username' => Html::encode($user->username),
     ]
 ) ?>
 <?= $verificationLink ?>

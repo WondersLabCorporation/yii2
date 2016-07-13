@@ -8,7 +8,7 @@
                 <img src="<?= Yii::$app->urlManager->createUrl(['/images/logo.png']) ?>"/>
             </div>
             <div class="pull-left info">
-                <p><?= Yii::$app->user->identity->username ?></p>
+                <p><?= Html::encode(Yii::$app->user->identity->username) ?></p>
             </div>
         </div>
 
