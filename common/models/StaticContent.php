@@ -4,7 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\SluggableBehavior;
-use sadovojav\cutter\behaviors\CutterBehavior;
+use WondersLabCorporation\cutter\CutterBehavior;
 
 /**
  * This is the model class for table "{{%static_content}}".

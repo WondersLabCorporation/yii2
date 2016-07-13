@@ -2,7 +2,7 @@
 
 use backend\models\StaticType;
 // TODO: Cutter total refactoring required. Replace with appropriate class once done.
-use sadovojav\cutter\Cutter;
+use WondersLabCorporation\cutter\Cutter;
 use WondersLabCorporation\UnlimitedNumber\UnlimitedNumberInputWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -46,7 +46,7 @@ use yii\widgets\ActiveForm;
     <?php endif;?>
 
     <?php if ($model->type->is_image_required) : ?>
-        <?= $form->field($model, 'image')->widget(Cutter::className(), ['cropperOptions' => ['aspectRatio' => 1]]); ?>
+        <?= $form->field($model, 'image')->widget(Cutter::className()); ?>
     <?php endif;?>
     
     <?= $form->field($model ,'status')->dropDownList(\backend\models\StaticContent::getStatusTexts()); ?>

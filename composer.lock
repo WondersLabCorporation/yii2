@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "18e385eabb8f0ebde9f82efdf279511b",
-    "content-hash": "89de5cb4e596dc60afc477ef4f20031f",
+    "hash": "8df9a43b4ff9a7dd2089399b93ffd0b6",
+    "content-hash": "672054b271712f45013d2bfdb17c4bbf",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -66,6 +66,42 @@
                 "yii2"
             ],
             "time": "2015-03-28 21:53:43"
+        },
+        {
+            "name": "WondersLabCorporation/yii2-image-cutter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WondersLabCorporation/yii2-image-cutter.git",
+                "reference": "e912c24f272028ee57c12bd31c4737f0296e4dca"
+            },
+            "require": {
+                "bower-asset/cropper": "~2.3",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-imagine": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "WondersLabCorporation\\cutter\\": "src"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Dmitriy Raschepkin",
+                    "email": "dmitriy.raschepkin@gmail.com"
+                }
+            ],
+            "description": "Yii2 crop image widget",
+            "keywords": [
+                "crop",
+                "cutter",
+                "image",
+                "upload",
+                "yii2"
+            ],
+            "time": "2016-07-13 12:45:45"
         },
         {
             "name": "WondersLabCorporation/yii2-unlimited-number-input-widget",
@@ -199,6 +235,74 @@
                 "mobile-first",
                 "responsive",
                 "web"
+            ]
+        },
+        {
+            "name": "bower-asset/cropper",
+            "version": "v2.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fengyuanchen/cropper.git",
+                "reference": "6c32c1706cbb9e88ce290e3b94c64256697a4b6a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fengyuanchen/cropper/zipball/6c32c1706cbb9e88ce290e3b94c64256697a4b6a",
+                "reference": "6c32c1706cbb9e88ce290e3b94c64256697a4b6a",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.9.1"
+            },
+            "require-dev": {
+                "bower-asset/bootstrap": "~3.3.6",
+                "bower-asset/fontawesome": "~4.6.1",
+                "bower-asset/html5-boilerplate": "~5.3.0",
+                "bower-asset/jquery": "~1.12.3",
+                "bower-asset/qunit": "~1.22.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/cropper.js",
+                    "dist/cropper.css"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "tests",
+                    "test",
+                    "examples",
+                    "assets",
+                    "demo",
+                    "docs",
+                    "gulpfile.js",
+                    "CONTRIBUTING.md",
+                    "FAQ.md"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A simple jQuery image cropping plugin.",
+            "keywords": [
+                "crop",
+                "cropper",
+                "cropping",
+                "css",
+                "development",
+                "front-end",
+                "html",
+                "image",
+                "javascript",
+                "jquery",
+                "move",
+                "plugin",
+                "rotate",
+                "scale",
+                "web",
+                "zoom"
             ]
         },
         {
@@ -759,52 +863,6 @@
                 "yii"
             ],
             "time": "2016-05-28 21:18:32"
-        },
-        {
-            "name": "sadovojav/yii2-image-cutter",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sadovojav/yii2-image-cutter.git",
-                "reference": "9927e1744882079bb3ddb158536c2c095a348e82"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sadovojav/yii2-image-cutter/zipball/9927e1744882079bb3ddb158536c2c095a348e82",
-                "reference": "9927e1744882079bb3ddb158536c2c095a348e82",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "yiisoft/yii2": "*",
-                "yiisoft/yii2-imagine": "*"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "bootstrap": "sadovojav\\cutter\\Bootstrap"
-            },
-            "autoload": {
-                "psr-4": {
-                    "sadovojav\\cutter\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Aleksandr Sadovoj",
-                    "email": "sadovojav@gmail.com",
-                    "homepage": "https://github.com/sadovojav"
-                }
-            ],
-            "description": "Yii2 crop image widget",
-            "keywords": [
-                "crop",
-                "cutter",
-                "image",
-                "upload",
-                "yii2"
-            ],
-            "time": "2016-05-05 14:50:16"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1507,7 +1565,7 @@
     "stability-flags": {
         "odaialali/yii2-toastr": 20,
         "wonderslabcorporation/yii2-unlimited-number-input-widget": 20,
-        "sadovojav/yii2-image-cutter": 20
+        "wonderslabcorporation/yii2-image-cutter": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
