@@ -1,3 +1,8 @@
+<?php
+
+use yii\helpers\Html;
+
+?>
 <aside class="main-sidebar">
 
     <section class="sidebar">

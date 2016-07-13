@@ -1,6 +1,8 @@
 <?php
 
 /* @var $this yii\web\View */
+use yii\helpers\Html;
+
 /* @var $user common\models\User */
 /* @var $verificationLink string */
 ?>
