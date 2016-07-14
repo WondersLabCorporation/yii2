@@ -73,7 +73,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WondersLabCorporation/yii2-image-cutter.git",
-                "reference": "e912c24f272028ee57c12bd31c4737f0296e4dca"
+                "reference": "e870269f9597188f9c364c44e3a4848c4d70a1e4"
             },
             "require": {
                 "bower-asset/cropper": "~2.3",
@@ -101,7 +101,7 @@
                 "upload",
                 "yii2"
             ],
-            "time": "2016-07-13 12:45:45"
+            "time": "2016-07-14 12:22:39"
         },
         {
             "name": "WondersLabCorporation/yii2-unlimited-number-input-widget",
