@@ -14,19 +14,26 @@ foreach (StaticType::itemsList(false) as $id => $item) {
     }
 }
 
+$staticPagesMenuItem = ['label' => Yii::t('backend', 'Static Pages'), 'url' => '', 'icon' => 'fa fa-file-text-o'];
+$staticPagesMenuItem = ['label' => Yii::t('backend', 'Static Pages'), 'url' => '', 'icon' => 'fa fa-file-text-o'];
 if (count($staticContentPageTypes) == 1) {
-    $staticPagesMenuItem = ['label' => Yii::t('backend', 'Static Pages'), 'url' => $staticContentPageTypes[0]['url']];
+    $staticPagesMenuItem['url'] = $staticContentPageTypes[0]['url'];
 } else {
-    $staticPagesMenuItem = ['label' => Yii::t('backend', 'Static Pages'), 'items' => $staticContentPageTypes];
+    $staticPagesMenuItem['items'] = $staticContentPageTypes;
 }
 
 $items = [
-    'home' => ['label' => Yii::t('backend', 'Home'), 'url' => ['site/index']],
+    'home' => ['label' => Yii::t('backend', 'Home'), 'url' => ['site/index'], 'icon' => 'fa fa-home '],
     'static pages' => $staticPagesMenuItem,
-    'static blocks' => ['label' => Yii::t('backend', 'Page blocks'), 'items' => $staticContentBlockTypes],
-    'settings' => ['label' => Yii::t('backend', 'Settings'), 'items' => [
-        'static content types' => ['label' => Yii::t('backend', 'Static Content Types'), 'url' => ['/static-type']],
-    ]],
+    'static blocks' => ['label' => Yii::t('backend', 'Page blocks'), 'items' => $staticContentBlockTypes, 'url' => '', 'icon' => 'fa fa-th-large'],
+    'settings' => [
+        'label' => Yii::t('backend', 'Settings'),
+        'items' => [
+            'static content types' => ['label' => Yii::t('backend', 'Static Content Types'), 'url' => ['/static-type']],
+        ],
+        'url' => '',
+        'icon' => 'fa fa-cogs'
+    ],
 ];
 
 ?>
