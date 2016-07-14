@@ -60,6 +60,26 @@ $columns[] = [
 $columns[] = [
     'class' => 'common\overrides\grid\ActionColumn',
     'template' =>  "{view}\n\r{update}\n\r{delete}\n\r{disable}\n\r{activate}",
+    'buttons' => [
+        // Overriding links to unclude type_id into url. Required for menu highlighting
+        // TODO: Remove this once a better solution is found
+        'view' => function ($url, $model, $key) {
+            $link = Html::a(Yii::t('yii', '{viewIcon} View', ['viewIcon' => '<span class="glyphicon glyphicon-eye-open"></span>']), ['/static-content/view', 'id' => $model->id, 'type_id' => $model->type_id], [
+                'title' => Yii::t('yii', 'View'),
+                'aria-label' => Yii::t('yii', 'View'),
+                'data-pjax' => '0',
+            ]);
+            return Html::tag('div', $link, ['class' => 'view-action-wrapper']);
+        },
+        'update' => function ($url, $model, $key) {
+            $link = Html::a(Yii::t('yii', '{updateIcon} Update', ['updateIcon' => '<span class="glyphicon glyphicon-pencil"></span>']), ['/static-content/view', 'id' => $model->id, 'type_id' => $model->type_id], [
+                'title' => Yii::t('yii', 'Update'),
+                'aria-label' => Yii::t('yii', 'Update'),
+                'data-pjax' => '0',
+            ]);
+            return Html::tag('div', $link, ['class' => 'view-action-wrapper']);
+        },
+    ],
 ];
 ?>
 <div class="static-content-index">
