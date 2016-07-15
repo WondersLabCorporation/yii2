@@ -72,7 +72,7 @@ $columns[] = [
             return Html::tag('div', $link, ['class' => 'view-action-wrapper']);
         },
         'update' => function ($url, $model, $key) {
-            $link = Html::a(Yii::t('yii', '{updateIcon} Update', ['updateIcon' => '<span class="glyphicon glyphicon-pencil"></span>']), ['/static-content/view', 'id' => $model->id, 'type_id' => $model->type_id], [
+            $link = Html::a(Yii::t('yii', '{updateIcon} Update', ['updateIcon' => '<span class="glyphicon glyphicon-pencil"></span>']), ['/static-content/update', 'id' => $model->id, 'type_id' => $model->type_id], [
                 'title' => Yii::t('yii', 'Update'),
                 'aria-label' => Yii::t('yii', 'Update'),
                 'data-pjax' => '0',
