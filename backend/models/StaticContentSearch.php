@@ -33,6 +33,15 @@ class StaticContentSearch extends StaticContent
     }
 
     /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        // Un-setting behaviors to remove slug-able behavior, etc.
+        return [];
+    }
+
+    /**
      * Creates data provider instance with search query applied
      *
      * @param array $params
