@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use common\behaviors\CountBehavior;
+use common\validators\CountValidator;
 use Yii;
 use yii\behaviors\SluggableBehavior;
 use WondersLabCorporation\cutter\CutterBehavior;
@@ -57,7 +59,6 @@ class StaticContent extends \common\overrides\db\ActiveRecord
                     'baseDir' => '/uploads/static',
                     'basePath' => Yii::getAlias('@frontend/web'),
                 ],
-                // TODO: Count behavior
             ]
         );
     }
@@ -75,7 +76,7 @@ class StaticContent extends \common\overrides\db\ActiveRecord
      */
     public function rules()
     {
-        return array_merge(
+        $rules = array_merge(
             parent::rules(),
             [
                 [['title', 'content'], 'required'],
@@ -90,6 +91,30 @@ class StaticContent extends \common\overrides\db\ActiveRecord
                 ],
            ]
         );
+
+        if ($this->type) {
+            if ($this->type->items_amount == 1) {
+                $rules[] = [
+                    'type_id',
+                    'unique',
+                    'when' => function ($model) {
+                        return $model->isNewRecord;
+                    },
+                    'message' => '{attribute} ' . $this->type->name . ' has already been taken',
+                ];
+            } elseif ($this->type->items_amount !== StaticType::AMOUNT_UNLIMITED) {
+                $rules[] = [
+                    'type_id',
+                    CountValidator::className(),
+                    'limit' => $this->type->items_amount,
+                    'when' => function ($model) {
+                        return $model->isNewRecord;
+                    }
+                ];
+            }
+        }
+
+        return $rules;
     }
 
     /**
