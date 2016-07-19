@@ -8,7 +8,12 @@ use yii\helpers\Html;
 $this->title = Yii::t('backend', 'Update {type} Static Content: ', [
     'type' => $model->type->name,
 ]) . $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', '{type} items', ['type' => $model->type->name]), 'url' => ['index', 'type_id' => $model->type_id]];
+if ($model->type->items_amount != 1) {
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', '{type} items', ['type' => $model->type->name]), 'url' => ['index', 'type_id' => $model->type_id]];
+} else {
+    $this->params['breadcrumbs'][] = Yii::t('backend', '{type} item', ['type' => $model->type->name]);
+}
+
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id, 'type_id' => $model->type_id]];
 $this->params['breadcrumbs'][] = Yii::t('backend', 'Update');
 ?>

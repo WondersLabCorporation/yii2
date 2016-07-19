@@ -8,7 +8,11 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\StaticContent */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', '{type} items', ['type' => $model->type->name]), 'url' => ['index', 'type_id' => $model->type_id]];
+if ($model->type->items_amount != 1) {
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', '{type} items', ['type' => $model->type->name]), 'url' => ['index', 'type_id' => $model->type_id]];
+} else {
+    $this->params['breadcrumbs'][] = Yii::t('backend', '{type} item', ['type' => $model->type->name]);
+}
 $this->params['breadcrumbs'][] = $this->title;
 
 $attributes = [

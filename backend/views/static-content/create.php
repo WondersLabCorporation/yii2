@@ -7,7 +7,11 @@ use yii\helpers\Html;
 /* @var $model backend\models\StaticContent */
 
 $this->title = Yii::t('backend', 'Create {type} item', ['type' => $model->type->name]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', '{type} items', ['type' => $model->type->name]), 'url' => ['index', 'type_id' => $model->type_id]];
+if ($model->type->items_amount != 1) {
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', '{type} items', ['type' => $model->type->name]), 'url' => ['index', 'type_id' => $model->type_id]];
+} else {
+    $this->params['breadcrumbs'][] = Yii::t('backend', '{type} item', ['type' => $model->type->name]);
+}
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="static-content-create">
