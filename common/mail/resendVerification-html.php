@@ -15,7 +15,7 @@ if(!empty(Yii::$app->components['frontendUrlManager'])) {
         'mail',
         "<p>Hello {username}.</p>\n\r<p>This email was sent to you in order to verify your email address.</p>\n\r<p>Please follow the link below to proceed.</p>\n\r<p>In case you did not request this email, please ignore it.</p>",
         [
-            'username' => $user->username,
+            'username' => Html::encode($user->username),
         ]
     ) ?>
     <p><?= Html::a(Html::encode($verificationLink), $verificationLink) ?></p>

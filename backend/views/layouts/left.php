@@ -1,6 +1,7 @@
 <?php
 
 use backend\models\StaticType;
+use yii\helpers\Html;
 
 $staticContentPageTypes = [];
 $staticContentBlockTypes = [];
@@ -47,7 +48,7 @@ $items = [
                 <img src="<?= Yii::$app->urlManager->createUrl(['/images/logo.png']) ?>"/>
             </div>
             <div class="pull-left info">
-                <p><?= \yii\helpers\Html::encode(Yii::$app->user->identity->username) ?></p>
+                <p><?= Html::encode(Yii::$app->user->identity->username) ?></p>
             </div>
         </div>
 

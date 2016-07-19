@@ -10,7 +10,7 @@ use yii\helpers\Html;
         'mail',
         "<p>Hello {username},</p>\n\r<p>You have successfully registered on {appname} website.</p>\n\r<p>Please follow the link below to verify your email address.</p>",
         [
-            'username' => $user->username,
+            'username' => Html::encode($user->username),
             'appname' => Yii::$app->name,
         ]
     ) ?>
