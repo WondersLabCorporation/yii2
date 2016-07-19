@@ -6,6 +6,8 @@ use Yii;
 use backend\models\StaticContent;
 use backend\models\StaticContentSearch;
 use backend\components\BaseController;
+use yii\base\InvalidParamException;
+use yii\web\BadRequestHttpException;
 use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -91,7 +93,7 @@ class StaticContentController extends BaseController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @param $type_id integer ID of the content type to be created
      * @return mixed
-     * @throws NotFoundHttpException
+     * @throws BadRequestHttpException
      */
     public function actionCreate($type_id)
     {
@@ -99,7 +101,7 @@ class StaticContentController extends BaseController
 
         if (!$model->validate(['type_id'])) {
             Yii::error('Attempt to create content with type ID:' . $type_id, 'static_content');
-            throw new NotFoundHttpException('No such Content type exists');
+            throw new BadRequestHttpException($model->getFirstError('type_id'));
         }
 
         if ($model->type->items_amount == 1 && $contentItem = $model->type->getContentItems()->one()) {
