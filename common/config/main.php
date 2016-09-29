@@ -23,11 +23,5 @@ return [
                 ],
             ],
         ],
-        'reCaptcha' => [
-            'name' => 'reCaptcha',
-            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
-            'siteKey' => '6LdeWCMTAAAAAGahbDctyKJRuoE9fOboP6RXbU3H',
-            'secret' => '6LdeWCMTAAAAADyiWA1DqoYKo10_2Hl8UNsXRToe',
-        ],
     ],
 ];
